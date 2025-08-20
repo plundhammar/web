@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Catalog</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="./">Catalog</a>
+            <a href="../resume/index.html">Résumé</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>/</h2>
+        <table id="file-table">
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Size</th>
+                    <th>Last Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </main>
+
+
+    <script>
+        async function fetchCatalog() {
+            try {
+                const response = await fetch('./catalog_data.json');
+                const items = await response.json();
+                
+                const tableBody = document.querySelector('#file-table tbody');
+                
+                items.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    const fileCell = document.createElement('td');
+                    const link = document.createElement('a');
+                    const icon = document.createElement('span');
+                    
+                    if (item.type === 'folder') {
+                        link.href = `./${item.name}/index.html`;
+                        icon.textContent = '📁 ';
+                    } else if (item.type === 'blog_post') { // This is the new rule
+                    link.href = `./${item.name}/index.html`;
+                    icon.textContent = '📝 '; // Blog post icon (e.g., a memo or document emoji)
+                    }else {
+                        link.href = `./${item.name}`;
+                        icon.textContent = '📄 ';
+                    }
+                    
+                    link.appendChild(icon);
+                    link.appendChild(document.createTextNode(item.name));
+                    fileCell.appendChild(link);
+                    
+                    const sizeCell = document.createElement('td');
+                    sizeCell.textContent = item.size;
+                    
+                    const modifiedCell = document.createElement('td');
+                    modifiedCell.textContent = item.lastModified;
+                    
+                    row.appendChild(fileCell);
+                    row.appendChild(sizeCell);
+                    row.appendChild(modifiedCell);
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching catalog data:', error);
+            }
+        }
+        fetchCatalog();
+    </script>
+
+  <div id="footer-placeholder" class="footer-content"></div>
+
+    <script>
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per Lundhammar</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Per Lundhammar</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="catalog/index.html">Catalog</a>
+            <a href="resume/index.html">Résumé</a>
+        </nav>
+    </header>
+
+    <main>
+        <img src="assets/images/Lake_in_the_Forest_(Gottfrid_Kallstenius)_-_Nationalmuseum_-_18540.jpeg" alt="A professional picture of me">
+        
+        <br>
+        <br>
+        I'm a Ph.D. candidate in Medical Physics at KTH Royal Institute of Technology, where I specialize in image reconstruction.<br>
+        <br>
+        <br>
+   <div id="stockholm-clock" style="font-size:1.0em; margin:10px 0; font-style:italic;"></div>
+        <script>
+        function updateStockholmClock() {
+            const now = new Date();
+            // Stockholm is UTC+2 during summer (CEST), UTC+1 during winter (CET)
+            // Use Intl API to get correct local time
+            const options = { timeZone: 'Europe/Stockholm', hour12: false };
+            const timeString = now.toLocaleTimeString('en-GB', options);
+            document.getElementById('stockholm-clock').textContent = 'Time in Stockholm: ' + timeString;
+        }
+        updateStockholmClock();
+        setInterval(updateStockholmClock, 1000);
+        </script>
+    </main>
+
+    <body>
+        
+    <div id="footer-placeholder" class="footer-content"></div>
+
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+</body>
+</body>
+</html>

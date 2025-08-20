@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé</title>
+    <link rel="stylesheet" href="../styles.css"> </head>
+<body>
+
+    <header>
+        <h1>Résumé</h1>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../catalog/index.html">Catalog</a>
+            <a href="#">Résumé</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile">
+            <img src="../assets/images/profile_image.jpeg" alt="A professional picture of me">
+            <h2>Per Lundhammar</h2>
+            <p>Email (personal): per.lundhammar@gmail.com</p>
+            <p>Email (work): lundhamm@kth.se</p>
+            <p>Phone: (+46) 730778317</p>
+        </section>
+        <section class="education">
+            <h2>Education</h2>
+            <article>
+                <h3>KTH Royal Institute of Technology</h3>
+                <p>2022 </p>
+                <p>Degree program in Engineering Physics <br>(Master: Theoretical Physics)</p>
+            </article>
+        </section>
+        <section class="experience">
+            <h2>Work Experience</h2>
+            <article>
+                <h3>Teaching assistant at KTH Royal Institute of Technology (Part-time)</h3>
+                <p>2018-2021</p>
+                
+                    Supplemental teaching related to the following courses:<br><br>
+                    <li> Calculus in Several Variables, SF1626 Spring, 2021</li>
+                    <li> Perspectives on Mathematics, SF1661 Autumn, 2020</li>
+                    <li> Introductory Course in Mathematics, SF0003 Summer, 2020</li>
+                    <li> Calculus in Several Variables, SF1626 Spring, 2020</li>
+                    <li> Linear Algebra, SF1672 Autumn, 2019</li>
+                    <li> Introductory Course in Mathematics, SF0003 Summer, 2019</li>
+                    <li> Calculus in One Variable, SF1625 Autumn, 2018</li>
+                    <li> Introductory Course in Mathematics, SF0003 Summer, 2018</li>
+            </article>
+        </section>
+        <section class="experience">
+            <h2>Publications</h2>
+            <article>
+                <h3>Nonrelativistic model of tetraquarks and predictions for their masses from fits to charmed and bottom meson data</h3>
+                <p><strong>Per Lundhammar</strong>, Tommy Ohlsson</p>
+                <p> 2020</p>
+                Phys. Rev. D 102, 054018<br>
+                DOI: <a href="https://doi.org/10.1103/PhysRevD.102.054018">https://doi.org/10.1103/PhysRevD.102.054018</a>  
+             </article>
+        </section>
+        <section class="experience">
+            <h2>Merits</h2>
+            <article>
+                <h3>Exchange Semester</h3>
+                <p>2021</p>
+                    Elected for exchange studies at the School of Mathematics, Trinity College (Dublin).
+            </article>
+            <article>
+                <h3>Research Exchange Program</h3>
+                <p>2019</p>
+                    Elected to participate in a summer research exchange program at Zhejiang University
+                    (Hangzhou), as part of the course Modern Physics, SH1012, with the aim of investigating
+                    properties of a micro-ring resonator.
+</article>
+<article>
+                <h3>Scholarships</h3>
+<li>Stiftelsen Ingenjör Ernst Johnsson November, 2021</li>
+<li>Håkanssons stiftelse May, 2021</li>
+<li>Henrik Göranssons Sandviken stipendiefond May, 2021</li>
+<li>Stiftelsen Ingenjör Ernst Johnsson March, 2021</li>
+<li>Stiftelsen Ingenjör Ernst Johnsson November, 2020</li>
+</article>
+        </section>
+    </main>
+
+    <body>
+    <div id="footer-placeholder" class="footer-content"></div>
+
+    <script>
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+</body>
+
+</body>
+</html>

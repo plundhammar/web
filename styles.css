@@ -1,0 +1,70 @@
+body {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    margin: 0;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-style: italic; /* This makes only the title italic */
+
+}
+
+
+main {
+    max-width: 500px; /* Adjust this value for the desired width */
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+}
+
+.profile img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.experience, .education {
+    margin-top: 40px;
+}
+
+.experience h3, .education h3 {
+    margin-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.footer-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+header nav a {
+    margin: 0 15px;
+}
+
+#file-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Adjust this value for the top margin */
+    margin-bottom: 20px; /* Adjust this value for the bottom margin */
+}
