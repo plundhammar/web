@@ -27,13 +27,15 @@ main img {
 }
 
 .profile img {
-    max-width: 150px;
-    height: auto;
-    border-radius: 50%;
-    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0px;
+    margin-bottom: 0px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border: 5px solid rgb(255, 178, 178);
 }
 
 .experience, .education {
