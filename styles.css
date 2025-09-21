@@ -35,7 +35,7 @@ main img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border: 5px solid rgb(255, 178, 178);
+    border: 5px solid rgba(12, 12, 12, 0.171);
 }
 
 .experience, .education {

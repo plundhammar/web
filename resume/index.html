@@ -1,101 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Résumé</title>
-    <link rel="stylesheet" href="../styles.css"> </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Résumé — Per Lundhammar</title>
+  <link rel="stylesheet" href="../styles.css"/>
+  <style>
+  main ul{list-style:disc;list-style-position:outside;margin:.25rem 0 .75rem;padding-left:1.25rem}
+  main li{margin:.2rem 0}
+  main li::marker{color:#444}
+</style>
+</head>
 <body>
 
-    <header>
-        <h1>Résumé</h1>
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="../catalog/index.html">Catalog</a>
-            <a href="#">Résumé</a>
-        </nav>
-    </header>
+<header>
+  <h1>Résumé</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../catalog/index.html">Catalog</a>
+    <a href="#">Résumé</a>
+  </nav>
+</header>
 
-    <main>
-        <section class="profile">
-            <img src="../assets/images/profile_picture.jpg" alt="A professional picture of me">
-            <h2>Per Lundhammar</h2>
-            <p>Email (personal): per.lundhammar@gmail.com</p>
-            <p>Email (work): lundhamm@kth.se</p>
-            <p>Phone: (+46) 730778317</p>
-        </section>
-        <section class="education">
-            <h2>Education</h2>
-            <article>
-                <h3>KTH Royal Institute of Technology</h3>
-                <p>2022 </p>
-                <p>Degree program in Engineering Physics <br>(Master: Theoretical Physics)</p>
-            </article>
-        </section>
-        <section class="experience">
-            <h2>Work Experience</h2>
-            <article>
-                <h3>Teaching assistant at KTH Royal Institute of Technology (Part-time)</h3>
-                <p>2018-2021</p>
-                
-                    Supplemental teaching related to the following courses:<br><br>
-                    <li> Calculus in Several Variables, SF1626 Spring, 2021</li>
-                    <li> Perspectives on Mathematics, SF1661 Autumn, 2020</li>
-                    <li> Introductory Course in Mathematics, SF0003 Summer, 2020</li>
-                    <li> Calculus in Several Variables, SF1626 Spring, 2020</li>
-                    <li> Linear Algebra, SF1672 Autumn, 2019</li>
-                    <li> Introductory Course in Mathematics, SF0003 Summer, 2019</li>
-                    <li> Calculus in One Variable, SF1625 Autumn, 2018</li>
-                    <li> Introductory Course in Mathematics, SF0003 Summer, 2018</li>
-            </article>
-        </section>
-        <section class="experience">
-            <h2>Publications</h2>
-            <article>
-                <h3>Nonrelativistic model of tetraquarks and predictions for their masses from fits to charmed and bottom meson data</h3>
-                <p><strong>Per Lundhammar</strong>, Tommy Ohlsson</p>
-                <p> 2020</p>
-                Phys. Rev. D 102, 054018<br>
-                DOI: <a href="https://doi.org/10.1103/PhysRevD.102.054018">https://doi.org/10.1103/PhysRevD.102.054018</a>  
-             </article>
-        </section>
-        <section class="experience">
-            <h2>Merits</h2>
-            <article>
-                <h3>Exchange Semester</h3>
-                <p>2021</p>
-                    Elected for exchange studies at the School of Mathematics, Trinity College (Dublin).
-            </article>
-            <article>
-                <h3>Research Exchange Program</h3>
-                <p>2019</p>
-                    Elected to participate in a summer research exchange program at Zhejiang University
-                    (Hangzhou), as part of the course Modern Physics, SH1012, with the aim of investigating
-                    properties of a micro-ring resonator.
-</article>
-<article>
-                <h3>Scholarships</h3>
-<li>Stiftelsen Ingenjör Ernst Johnsson November, 2021</li>
-<li>Håkanssons stiftelse May, 2021</li>
-<li>Henrik Göranssons Sandviken stipendiefond May, 2021</li>
-<li>Stiftelsen Ingenjör Ernst Johnsson March, 2021</li>
-<li>Stiftelsen Ingenjör Ernst Johnsson November, 2020</li>
-</article>
-        </section>
-    </main>
+<main>
+  <!-- PROFILE -->
+  <section class="profile">
+    <img src="../assets/images/new_profile_image.jpg" alt="Portrait of Per Lundhammar"/>
+    <h2>Per Lundhammar</h2>
+    <p>Email: <a href="mailto:per.lundhammar@gmail.com">per.lundhammar@gmail.com</a></p>
+    <p>Phone: <a href="tel:+46730778317">+46 730 77 83 17</a></p>
+    <p>
+      <a href="https://www.linkedin.com/in/per-lundhammar-70140a19a" rel="noopener"><strong>LinkedIn</strong></a> ·
+      <a href="https://github.com/plundhammar" rel="noopener"><strong>GitHub</strong></a>
+    </p>
+  </section>
 
-    <body>
-    <div id="footer-placeholder" class="footer-content"></div>
+  <!-- EXPERIENCE -->
+  <section class="experience">
+    <h2>Work Experience</h2>
 
-    <script>
-        fetch('../footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+    <article>
+      <h3>Doctoral Researcher (Medical Imaging Physics) — <span class="where">KTH Royal Institute of Technology</span></h3>
+      <div class="when"><time datetime="2024-07">Jul 2024</time> – Present</div>
+      <ul>
+        <li>Developed models of photon–silicon interactions using maximum-likelihood methods, machine learning, and physics-informed neural networks (PINNs).</li>
+        <li>Built a Monte Carlo simulation pipeline in GEANT4 with ROOT-based data processing to generate synthetic datasets.</li>
+        <li>Presented results at IEEE NSS/MIC/RTSD 2024 (Florida), Fully 3D 2025 (Shanghai), and IEEE NSS/MIC/RTSD 2025 (Yokohama).</li>
+        <li>Teaching (Oct 2025 – Jan 2026): Modern Physics (SH1014), labs and supervision.</li>
+      </ul>
+    </article>
 
-</body>
+    <article>
+      <h3>Sabbatical</h3>
+      <div class="when"><time datetime="2023-07">Jul 2023</time> – <time datetime="2024-06">Jun 2024</time></div>
+      <ul>
+        <li>Sabbatical prior to doctoral studies.</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Data/BI Consultant — <span class="where">Random Forest</span></h3>
+      <div class="when"><time datetime="2022-11">Nov 2022</time> – <time datetime="2023-06">Jun 2023</time></div>
+      <ul>
+        <li>Built data pipelines in SQL and Python for forecasting time-series data.</li>
+        <li>Developed interactive dashboards in Power BI for data visualization and reporting.</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>Teaching Assistant (part-time) — <span class="where">KTH Royal Institute of Technology</span></h3>
+      <div class="when"><time datetime="2018">2018</time> – <time datetime="2021">2021</time></div>
+      <p>Supplemental teaching related to the following courses:</p>
+      <ul>
+        <li>Calculus in Several Variables (SF1626), 2021.</li>
+        <li>Perspectives on Mathematics (SF1661), 2020.</li>
+        <li>Introductory Course in Mathematics (SF0003), 2020.</li>
+        <li>Calculus in Several Variables (SF1626), 2020.</li>
+        <li>Linear Algebra (SF1672), 2019.</li>
+        <li>Introductory Course in Mathematics (SF0003), 2019.</li>
+        <li>Calculus in One Variable (SF1625), 2018.</li>
+        <li>Introductory Course in Mathematics (SF0003), 2018.</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="education">
+    <h2>Education</h2>
+    <article>
+      <h3>KTH Royal Institute of Technology</h3>
+      <p><time datetime="2022">2022</time></p>
+    <em>Degree program in Engineering Physics (300 ECTS credits).</em>
+      <ul>
+        <li><strong>Master of Science</strong> in Theoretical Physics.</li>
+        <li><strong>Bachelor of Science</strong> in Engineering Physics.</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- SKILLS (NEW) -->
+  <section class="skills">
+    <h2>Skills</h2>
+    <article>
+      <h3>Tools</h3>
+      <ul>
+        <li>Python; MATLAB; SQL; Git; Linux/Bash.</li>
+      </ul>
+
+      <h3>Languages</h3>
+      <ul>
+        <li>Swedish, English.</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="experience">
+    <h2>Publications</h2>
+
+    <em>Journal papers</em>
+    <article>
+      <h3>Nonrelativistic model of tetraquarks and predictions for their masses from fits to charmed and bottom meson data</h3>
+      <p><strong>Per Lundhammar</strong>, Tommy Ohlsson</p>
+      <p>2020</p>
+      Phys. Rev. D 102, 054018<br/>
+      DOI: <a href="https://doi.org/10.1103/PhysRevD.102.054018">https://doi.org/10.1103/PhysRevD.102.054018</a>
+    </article>
+
+    <br/>
+    <em>Conference papers</em>
+    <article>
+      <h3>Probabilistic modeling of an event-based silicon detector</h3>
+      <p><strong>Per Lundhammar</strong>, Luca Terenzi, Mats Danielsson, Mats Persson</p>
+      <p>2025</p>
+      Proceedings of the 18th International Meeting on Fully 3D Image Reconstruction in Radiology and Nuclear Medicine<br/>
+      <a href="https://hqlab.sjtu.edu.cn/fully3d-2025/home">https://hqlab.sjtu.edu.cn/fully3d-2025/home</a>
+    </article>
+
+    <article>
+      <h3>Basis Image Filtering Enables Subpixel Resolution in Photon-Counting CT</h3>
+      <p>Luca Terenzi, <strong>Per Lundhammar</strong>, Mats Persson</p>
+      <p>2023</p>
+      Proceedings of the 17th International Meeting on Fully 3D Image Reconstruction in Radiology and Nuclear Medicine, pp. 390–393<br/>
+      <a href="https://arxiv.org/abs/2310.16846">https://arxiv.org/abs/2310.16846</a>
+    </article>
+
+   
+  </section>
+
+  <!-- MERITS -->
+  <section class="experience">
+    <h2>Merits</h2>
+
+    <article>
+      <h3>Best Poster Award</h3>
+      <p>2025</p>
+      Awarded Best Poster at the 18th International Meeting on Fully 3D Image Reconstruction in Radiology and Nuclear Medicine, Shanghai.
+    </article>
+
+    <article>
+      <h3>Certified Azure Data Engineer</h3>
+      <p>2023</p>
+      Passed Microsoft certification DP-203: Data Engineering on Microsoft Azure.
+    </article>
+
+    <article>
+      <h3>Exchange Semester</h3>
+      <p>2021</p>
+      Elected for exchange studies at the School of Mathematics, Trinity College Dublin.
+    </article>
+
+    <article>
+      <h3>Research Exchange Program</h3>
+      <p>2019</p>
+      Participated in a summer research exchange at Zhejiang University (Hangzhou) as part of the course Modern Physics (SH1012), investigating properties of a micro-ring resonator.
+    </article>
+
+    <article>
+      <h3>Scholarships</h3>
+      <ul>
+        <li>Stiftelsen Styffe, 2025 <span style="color: gray;">(34.2 kSEK)</span></li>
+        <li>Stiftelsen Ingenjör Ernst Johnsson, 2022 <span style="color: gray;">(30.0 kSEK)</span></li>
+        <li>Håkanssons stiftelse, 2021 <span style="color: gray;">(10.0 kSEK)</span></li>
+        <li>Henrik Göranssons Sandviken stipendiefond, 2021 <span style="color: gray;">(38.0 kSEK)</span></li>
+        <li>Stiftelsen Ingenjör Ernst Johnsson, 2021 <span style="color: gray;">(20.0 kSEK)</span></li>
+        <li>Stiftelsen Ingenjör Ernst Johnsson, 2020 <span style="color: gray;">(30.0 kSEK)</span></li>
+      </ul>
+    </article>
+  </section>
+</main>
+
+<div id="footer-placeholder" class="footer-content"></div>
+<script>
+  fetch('../footer.html')
+    .then(r => r.text())
+    .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+</script>
 
 </body>
 </html>
