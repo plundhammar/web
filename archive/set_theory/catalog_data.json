@@ -1,7 +1,12 @@
 [
     {
-        "name": "naiv_mängdlära",
+        "name": "naive_set_theory",
         "type": "blog_post",
-        "lastModified": "2025-08-19"
+        "lastModified": "2018-09-01"
+    },
+    {
+        "name": "the_axioms",
+        "type": "blog_post",
+        "lastModified": "2026-03-08"
     }
 ]
