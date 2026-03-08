@@ -4,27 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalog</title>
-    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
     <header>
-        <h1>Per Lundhammar</h1>
+        <h1>Archive</h1>
         <nav>
-            <a href="../../../index.html">Home</a>
-            <a href="../../index.html">Catalog</a>
-            <a href="../../../resume/index.html">Résumé</a>
+            <a href="../index.html">Home</a>
+            <a href="./">Archive</a>
+            <a href="../resume/index.html">Résumé</a>
         </nav>
     </header>
 
     <main>
-         
-        <h2>/posts/notes/</h2>
+        <h2>/archive</h2>
         <table id="file-table">
             <thead>
                 <tr>
-                    <th>File <a href="../">../</a> </th>
-                    <th>Size</th>
+                    <th>File</th>
                     <th>Last Modified</th>
                 </tr>
             </thead>
@@ -33,15 +31,6 @@
         </table>
     </main>
 
-    <div id="footer-placeholder" class="footer-content"></div>
-
-    <script>
-        fetch('../../../footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
 
     <script>
         async function fetchCatalog() {
@@ -73,14 +62,11 @@
                     link.appendChild(document.createTextNode(item.name));
                     fileCell.appendChild(link);
                     
-                    const sizeCell = document.createElement('td');
-                    sizeCell.textContent = item.size;
                     
                     const modifiedCell = document.createElement('td');
                     modifiedCell.textContent = item.lastModified;
                     
                     row.appendChild(fileCell);
-                    row.appendChild(sizeCell);
                     row.appendChild(modifiedCell);
                     tableBody.appendChild(row);
                 });
@@ -91,5 +77,14 @@
         fetchCatalog();
     </script>
 
+  <div id="footer-placeholder" class="footer-content"></div>
+
+    <script>
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 </html>

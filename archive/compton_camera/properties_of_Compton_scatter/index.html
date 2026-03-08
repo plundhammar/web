@@ -14,13 +14,13 @@
         <h1>Properties of<br>Compton scattering</h1>
         <nav>
             <a href="../../../../index.html">Home</a>
-            <a href="../../../index.html">Catalog</a>
+            <a href="../../../index.html">Archive</a>
             <a href="../../../../resume/index.html">Resumé</a>
         </nav>
     </header>
 
     <main>
-         <a href="../">../</a> 
+         <a href="../">-return-</a> 
         <article>
             <p><strong>The energies of a Compton scatter chain are correlated through the Compton scattering equation as well as the Klein-Nishina distribution. This means that some vital statistics must exist, and perhaps be possible to calculate in closed expression. In this post I wanted to give it a try and compare it to some simulated data.</strong></p>
 <p>I recently got a hold on some simulated list-mode data of photons interacting with a silicon volume. That is, a list
@@ -39,7 +39,7 @@ Something that occurred to me was that basically all of the statistics are known
 E_\gamma&rsquo; = \frac{E_\gamma}{1+\varepsilon(1-\cos\theta)}
 $$</p>
 <p>with $\theta$ being the scatter angle and $\varepsilon = E_\gamma&rsquo;/E_\gamma$, and canonical for $E_\gamma&rsquo;&rsquo;$ with $\theta&rsquo;$ and $\varepsilon&rsquo;$ defined similarly to above.</p>
-<p><img loading="lazy" src="../../../../assets/images/ScatterSeries.png" alt="Title"  />
+<p><img loading="lazy" src="images/ScatterSeries.png" alt="Title"  />
 <br>   
 <strong>Figure 1</strong>: A serie of two scatter events.</p>
 <br> 
@@ -57,15 +57,15 @@ $$
 \mathbb{E}\left[E_1\right] = 511\times\left[\frac{\log(3)-\frac{28}{81}}{\frac{40}{9}-\log(3)}\right]~\mathrm{keV} \approx 511\times 0.656\mathrm{keV}\approx 335\mathrm{keV}
 $$
 For a given $E_\gamma&rsquo;$ we can calculate the expectation value and standard deviation of $E_\gamma&rsquo;&rsquo;$ in the same manner as above. I got some data simulating the setup in figure (2).</p>
-<p><img loading="lazy" src="../../../../../assets/images/SimulationGeometry.png" alt="Title"  />
+<p><img loading="lazy" src="images/SimulationGeometry.png" alt="Title"  />
 
 <strong>Figure 2</strong>: Geometry of the simulation.</p>
 <p>The events are the positions and energies as described above, and illustrated in figure (3)</p>
-<p><img loading="lazy" src="../../../assets/images/EventsInSi3.png" alt="Title"  />
+<p><img loading="lazy" src="images/EventsInSi3.png" alt="Title"  />
 
 <strong>Figure 3</strong>: The events in the silicon solid.]]</p>
 <p>In figure (4) the simulated data is shown together with the expectation value (red line) and one standard deviation away from the expectation value (blue lines) as well as the line where photo absorption happens (gray).</p>
-<p><img loading="lazy" src="../../../../assets/images/EnergyDistribution.png" alt="Title"  />
+<p><img loading="lazy" src="images/EnergyDistribution.png" alt="Title"  />
 
 <strong>Figure 4</strong>: Energy distribution of some simulated list-mode data and its statistics.]]</p>
 <p>Note that the realizations get denser at $E_1 = 335~\mathrm{keV}$, as calculated above.</p>

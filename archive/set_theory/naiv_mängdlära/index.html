@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naiv mängdlära</title>
+    <link rel="stylesheet" href="../../../../styles.css"> <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Naiv mängdlära</h1>
+        <nav>
+            <a href="../../../../index.html">Home</a>
+            <a href="../../../index.html">Archive</a>
+            <a href="../../../../resume/index.html">Resumé</a>
+        </nav>
+    </header>
+
+    <main>
+         <a href="../">-return-</a> 
+        <article>
+<h2>Introduktion</h2>
+Ett sammelsurium av inledande definitioner och axiom som föranleder en paradox i den naiva mängdläran (och hur man stävjar den). Anteckningar från en serie av <a href="https://www.youtube.com/watch?v=qgizzlTVxxs&list=PLpzmRsG7u_gpZyi0w80IBk51k6ClSJRWK">Mathoma</a>.
+<h3>Definition: Kvantifikatorer</h3>
+<p>Vi kommer använda oss av så kallade kvantifikatorer för att dels konstruera mängder men också för att på ett bekvämt sätt formulera påståenden. En kvantifikator är en logisk operator som binder en fri variabel i ett logiskt predikat. De vi kommer stöta på är följande:</p>
+
+<p><strong>Universal</strong>: $\forall x$ utläses "för alla $x$".</p>
+<p><strong>Existens</strong>: $\exists x$ utläses "det existerar ett $x$".</p>
+<p><strong>Implikation</strong>: $A \Rightarrow B$ utläses "om $A$ så $B$". Om $A$ är sann måste $B$ vara sann.</p>
+<p><strong>Ekvivalens</strong>: $A \Leftrightarrow B$ utläses "$A$ om och endast om $B$" och betyder att både $A \Rightarrow B$ och $B \Rightarrow A$ gäller.</p>
+
+<h3>Definition: Mängd</h3>
+<p>En mängd är en samling element. Vi skriver exempelvis mängden som innehåller talen $1$ och $2$ som $\{1,2\}$. Ordning och repetition spelar ingen roll så exempelvis är $\{1,1,2,3\}=\{3,2,1\}$.</p>
+
+<h3>Definition: Delmängd</h3>
+<p>Om $A$ är en delmängd till $B$ gäller att $\forall x (x \in A \Rightarrow x \in B)$ och vi skriver $A \subset B$. Notera att om $A \subset B$ och $B \subset A$ så är $A=B$.</p>
+
+<h2>Konstruktion av mängder via påståenden</h2>
+<p>Vi kan konstruera mängder genom att välja elementen med ett påstående. Detta kan skrivas exempelvis $A=\{x : x$ är ett primtal och $x\leq 10\}$, vilket ger oss mängden $A=\{2,3,5,7\}$.</p>
+
+<h2>Tomma mängden</h2>
+<p>Den tomma mängden $\emptyset$ är mängden som inte innehåller något element. Intressanta egenskaper av denna mängd är exempelvis att för alla mängder $A$ så är $\emptyset \subset A$, eftersom det inte finns något $x \in \emptyset$ så att $x \notin A$.</p>
+
+<h3>Definition: Potensmängd</h3>
+<p>Potensmängden $\mathcal{P}(A)$ av en mängd $A$ definieras som $\mathcal{P}(A)=\{x : x \subset A\}$, alltså mängden av alla delmängder till $A$.</p>
+
+<h3>Definition: Union</h3>
+<p>Vi definierar unionen mellan två mängder $A \cup B$ som $A \cup B=\{x : x \in A$ eller $x \in B\}$.</p>
+
+<h3>Definition: Snitt</h3>
+<p>Vi definierar snittet mellan två mängder $A \cap B$ som $A \cap B=\{x : x \in A$ och $x \in B\}$.</p>
+
+<h3>Definition: Relativt komplement</h3>
+<p>Vi definierar det relativa komplementet $A-B$ av $B$ med avseende på $A$ som $A-B=\{x : x \in A$ och $x \notin B\}$.</p>
+
+<p>Nu har vi etablerat en bas för att undersöka mängder som objekt. Så vilka mängder kan vi skapa? Den första typen av mängdlära var den som kallades naiv mängdlära, där man introducerade följande axiom.</p>
+
+<h3>Axiom om (obegränsad) omfattning</h3>
+<p>Jag formulerar det med kvantifikatorer: $\exists A \forall x : x \in A \Leftrightarrow P(x)$, där $P(x)$ är något påstående om $x$. Vad axiomet säger är att mängder av typen $A=\{x : x$ är röd$\}$ existerar och även mängder av typen $B=\{x : x$ inte är en motorcykel$\}$ existerar.</p>
+
+<p>Notera att $A \notin A$ eftersom $A$ är en mängd och inte röd, men däremot att $B \in B$ eftersom $B$ är en mängd vilket inte är en motorcykel. Detta leder oss till vad som fick Gottlob Frege att ge upp hoppet om att formalisera matematiken: en paradox.</p>
+
+<h2>Russells paradox</h2>
+<p>Detta är ett exempel på vad naiv mängdlära kan leda till. Betrakta mängden $R$ definierad som $R=\{x : x \notin x\}$, eller uttryckt i ord: "$R$ är mängden av alla mängder $x$ sådana att $x$ inte innehåller sig själv".</p>
+
+<p>Vi såg tidigare exempel på att mängder kan innehålla sig själva så det borde inte vara något märkligt att konstruera $R$. Dessutom garanterar axiomet om obegränsad omfattning att $R$ existerar.</p>
+
+<p>Vad är då problemet? Problemet uppstår när man frågar sig om $R$ innehåller sig själv eller inte.</p>
+
+<p>Om $R \in R$ så gäller enligt definitionen av $R$ att $R \notin R$, vilket är en motsägelse. Alltså måste $R \notin R$. Men enligt konstruktionen av $R$ innebär detta att $R \in R$. Vi har alltså visat att $R \in R \Leftrightarrow R \notin R$, vilket är en paradox. Den naiva mängdläran är alltså inkonsistent.</p>
+
+<p>Men detta kan lösas genom att modifiera det tidigare axiomet något.</p>
+
+<h3>Delmängdsaxiomet</h3>
+<p>Jag formulerar det med kvantifikatorer: $\forall A \exists B \forall x : x \in B \Leftrightarrow (x \in A$ och $P(x))$.</p>
+
+<p>Så nu kräver vi existensen av en annan mängd $A$ innan vi säger att vår stygga mängd $R$ existerar. Hur löser detta Russells paradox? Jo, med delmängdsaxiomet blir mängden $R$ istället $R=\{x : x \in A$ och $x \notin x\}$.</p>
+
+<p>Antag att $R \in R$. Då gäller att $R \in A$ och $R \notin R$, vilket är en motsägelse. Alltså måste $R \notin R$. Detta innebär att antingen $R \notin A$ eller $R \in R$, men det senare ledde till motsägelse. Vi drar därför slutsatsen att $R \notin A$ och därmed också $R \notin R$. Vi får alltså ett bestämt sanningsvärde och paradoxen uppstår inte.</p>
+</article>
+    </main>
+
+    
+  <div id="footer-placeholder" class="footer-content">2024-09-27</div>
+
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</body>
+</html>

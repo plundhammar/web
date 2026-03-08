@@ -14,13 +14,13 @@
         <h1>Decovolution and<br>the system matrix</h1>
         <nav>
             <a href="../../../../index.html">Home</a>
-            <a href="../../../index.html">Catalog</a>
+            <a href="../../../index.html">Archive</a>
             <a href="../../../../resume/index.html">Resumé</a>
         </nav>
     </header>
 
     <main>
-         <a href="../">../</a> 
+         <a href="../">-return-</a> 
         <article>
             <p><strong>Delving into the practicalities of the inverse problem of reconstructing Compton camera images will lead you to Legandre polynomials or Maximum Likelihood methods, most likely.</strong></p>
 <p>Since last week I have been interested in both the analytical reconstruction techniques as well as some of the iterative methods.</p>
@@ -63,15 +63,15 @@ $$
 h(\cos\omega) = h_c(\cos\omega)\frac{1+\cos^2\omega+\frac{\gamma^2(1-\cos\omega)^2}{1+\gamma(1-\cos\omega)}}{(1+\gamma(1-\cos\omega))^2}
 $$
 and $h_c(\cos\omega)$ being the Klein-Nishima cross-section, see figure 1. The angle $\omega$ in the expression above is the angle from a $z$-axis between the axis of the source point and the axis of the cone.</p>
-<p><img src="../../../../assets/images/ComptonScatterCrossSection.png" alt="Title"  />
+<p><img src="images/ComptonScatterCrossSection.png" alt="Title"  />
 
 <strong>Figure 1</strong>: $h_c(\cos\omega)$</p>
 <p>The differential cross section convolution kernel $h(\cos\omega)$ can be seen in figure 2.</p>
-<p><img loading="lazy" src="../../../../assets/images/DifferentialCrossSectionConvolutionKernel.png" alt="Title"  />
+<p><img loading="lazy" src="images/DifferentialCrossSectionConvolutionKernel.png" alt="Title"  />
 
 <strong>Figure 2</strong>: $h(\cos\omega)$</p>
 <p>They said that the integral above has an analytic solution but when I triend to calculate it in <code>scipy</code> it did not result in anything. I did manage to replicate the resulting point spread function, see figure 3.</p>
-<p><img loading="lazy" src="../../../../assets/images/BackProjectionPSF.png" alt="Title"  />
+<p><img loading="lazy" src="images/BackProjectionPSF.png" alt="Title"  />
 
 <strong>Figure 3</strong>: $h_bp(\cos\omega)$</p>
 <p>It would be interesting to expand this in Legandre polynomials and deconvolve the measured image intesity summed over scattering angles and compare with an iterative method like LM-MLEM. I suppose the system matrix would take the simple form above shown in Ref. [1], if I manage to write efficient code.</p>

@@ -14,13 +14,13 @@
         <h1>Sequential<br>neural networks</h1>
         <nav>
             <a href="../../../../index.html">Home</a>
-            <a href="../../../index.html">Catalog</a>
+            <a href="../../../index.html">Archive</a>
             <a href="../../../../resume/index.html">Resumé</a>
         </nav>
     </header>
 
     <main>
-         <a href="../">../</a> 
+         <a href="../">-return-</a> 
         <article>
             <p><strong>This is a preliminary, hands-on, and maybe useful walk-trough of a sequential neural network in PyTorch. This is a summary of some notes I have been taking while reading about different topics in machine learning, see Refs. [1-3].</strong></p>
 <p>Suppose one has data that consists of an independent vector $\mathbf{x}$ and a dependent vector $\mathbf{y}$ such that $\mathbf{y} = f(\mathbf{x})$ for some function $f$. Let say we knew the set $(\mathbf{x}, \mathbf{y})$ then we could guess what the function $f$ is. If vector $\mathbf{x}$ contains the entire domain of $f$ then we are done, but if $\mathbf{x}$ only contains part of the domain then the problem of estimating $f$ becomes more elusive. Let $\widehat{f}$ denote an estimation of $f$.</p>
@@ -58,7 +58,7 @@ $$
 $$</p>
 <h3 id="data">Data<a hidden class="anchor" aria-hidden="true" href="#data">#</a></h3>
 <p>We will be investigating data consisting of the weight and length of 9 different species of fish found HERE. The first $75~%$ of the row will constitute the <em>training</em> data and the rest the <em>test</em> data. We will use the training data to alter the weighhts of the neural network, then test our resulting model on the test data. In <code>utils.py</code> there are some helpful functions that keeps the cluttering in this document to the minimum. Importing everthing from <code>utils.py</code> we can for the training and test datasets.</p>
-<p><img loading="lazy" src="../../../../assets/images/fish_data.png" alt="Title"  />
+<p><img loading="lazy" src="images/fish_data.png" alt="Title"  />
 </p>
 <h2 id="neural-networks">Neural Networks<a hidden class="anchor" aria-hidden="true" href="#neural-networks">#</a></h2>
 <p>Inspired by the structure of biological neural network a neural network in maachine learning is a model consisting of connected units of nodes. For a given input this model produces an output based on weights that is altered to yield the best output.  In our case, we will adapt the structure given by the PyTorch library where the data is loaded into a so-called <em>Dataloader</em> which will be explained later. This simplifies the tracking of all the operations that needs to be made in the model.</p>
@@ -139,10 +139,10 @@ for epoch in range(num_epochs):
         
 </code></pre><h2 id="results">Results</h2>
 <p>Below we see the loss function over all epochs and batches. It is slowly decreasing, meaning that our estimate gets better at recreating the true values of the training data.</p>
-<p><img loading="lazy" src="../../../../assets/images/Cross_Entropy_Loss.png" alt="Title"  />
+<p><img loading="lazy" src="images/Cross_Entropy_Loss.png" alt="Title"  />
 </p>
 <p>But what we really care about is how well the model describes data it has not yet seen, i.e. the test_data.</p>
-<p><img loading="lazy" src="../../../../assets/images/training_data_1.png" alt="Title"  />
+<p><img loading="lazy" src="images/training_data_1.png" alt="Title"  />
 </p>
 <p>Above is for the training data, which we would expect the model to be able to describe (it has already seen it many times!).  Of all the training data, the best model where able to label 80.08 % of the fish specis correctly and 19.92 % incorrectly.</p>
 <p>Below is the amount of correct predictions for the training data (data the model has not yet seen).</p>
