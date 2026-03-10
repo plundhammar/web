@@ -18,5 +18,10 @@
         "name": "set_theory",
         "type": "folder",
         "lastModified": "2026-03-08"
+    },
+    {
+        "name": "black_belt",
+        "type": "blog_post",
+        "lastModified": "2026-03-08"
     }
 ]

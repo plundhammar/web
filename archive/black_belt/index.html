@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The fertile black belt</title>
+    <link rel="stylesheet" href="../../../../styles.css"> <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>The fertile black belt</h1>
+        <nav>
+            <a href="../../../../index.html">Home</a>
+            <a href="../../../index.html">Archive</a>
+            <a href="../../../../resume/index.html">Resumé</a>
+        </nav>
+    </header>
+
+    <main>
+         <a href="../">-return-</a> 
+        <article>
+<h2>Introduction</h2>
+I recently came accross the term "Black Belt" in a <a href="https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/">reddit post</a>, which led me to learn about the geological history of the region and how it has influenced its modern demographics and politics. 
+Further research led me to another <a href="https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/">reddit post</a> that seemed to be the source of the first one, and which led me to the original <a href="https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/">article</a> that excellently explained the phenomenon.
+
+<img 
+    src="images/map_boundary_black_belt.png"
+    alt="Black Belt region map"
+    style="max-width:100%; height:auto;">
+<p style="font-size:0.9rem; color:#333; text-align:center;"> The Black Belt stretching over Mississippi and Alabama</p>
+As far as I understood, the Black Belt is a region in the southern United States that stretches across parts of Alabama and Mississippi (however only shown for Alabama in the post), named for its rich, dark soil that was ideal for cotton farming. 
+This fertile soil was formed from the chalk deposits of the Cretaceous period, which were laid down when the area was covered by a shallow sea (about 65-90 million years ago). The chalk was formed from the accumulation of microscopic marine organisms, and over time it created a thick layer of sediment that eventually became the rich soil of the Black Belt.
+<br><br>
+<img 
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kronosaurus_hunt1DB.jpg/1280px-Kronosaurus_hunt1DB.jpg"
+    alt="Kronosaurus hunting illustration"
+    style="max-width:100%; height:auto;">
+<p style="font-size:0.8rem; color:#555; text-align:center;">The kind of creatures that lived under the creation of the Black Belt, by David Krentz (source: <a href="https://en.wikipedia.org/wiki/File:Kronosaurus_hunt1DB.jpg">Wikimedia Commons</a>)</p>
+<br><br>
+I thought the visuals in the original article were very nice and wanted to see if I could find the data and create something similar myself. To see the creation of the Black Belt and how it evolved over time, I found a dataset of paleogeographic reconstructions from the PaleoMAP PaleoCoastlines dataset (Kocsis & Scotese, 2023), which provides detailed maps of the Earth's coastlines and continental margins at various points in geological history Ref [1], and the Black Belt is from that dataset in Refs. [2,3]. 
+
+
+<div class="paleo-slider">
+  <div class="paleo-slider-top">
+    <span><strong><span id="yearText">90</span> million years ago</strong></span>
+    <div class="paleo-buttons">
+      <button id="stepBackBtn" type="button">←</button>
+      <button id="playBtn" type="button">Play</button>
+      <button id="stepForwardBtn" type="button">→</button>
+    </div>
+  </div>
+
+  <input id="yearSlider" type="range" min="0" max="0" step="1" value="0" />
+  <div id="tickRow" class="paleo-ticks"></div>
+
+  <div class="paleo-grid">
+    <figure>
+      <img id="blackbeltImg" alt="Black Belt paleogeography frame" />
+    </figure>
+
+    <figure>
+      <img id="globalImg" alt="Global paleogeography frame" />
+    </figure>
+  </div>
+</div>
+
+<style>
+  .paleo-slider {
+    margin: 2rem 0;
+  }
+
+  .paleo-slider-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .paleo-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .paleo-buttons button {
+    font: inherit;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid #999;
+    background: white;
+    cursor: pointer;
+  }
+
+  .paleo-buttons button:hover {
+    background: #f2f2f2;
+  }
+
+  .paleo-slider input[type="range"] {
+    width: 100%;
+    margin: 0.5rem 0 0.25rem;
+  }
+
+  .paleo-ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .paleo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .paleo-grid figure {
+    margin: 0;
+  }
+
+  .paleo-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+  }
+
+  .paleo-grid figcaption {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .paleo-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const globalBase = "images/global";
+  const blackbeltBase = "images/blackbelt";
+
+  // Only years that actually exist
+  const years = [120, 105, 95, 90, 85, 80, 70, 65,60, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0];
+
+  const slider = document.getElementById("yearSlider");
+  const yearText = document.getElementById("yearText");
+  const globalImg = document.getElementById("globalImg");
+  const blackbeltImg = document.getElementById("blackbeltImg");
+  const playBtn = document.getElementById("playBtn");
+  const stepBackBtn = document.getElementById("stepBackBtn");
+  const stepForwardBtn = document.getElementById("stepForwardBtn");
+  const tickRow = document.getElementById("tickRow");
+
+  let playing = false;
+  let timer = null;
+
+  slider.min = 0;
+  slider.max = years.length - 1;
+  slider.value = years.indexOf(90) >= 0 ? years.indexOf(90) : 0;
+
+  function framePath(base, prefix, year) {
+    const padded = String(year).padStart(3, "0");
+    return `${base}/${prefix}_${padded}Ma.png`;
+  }
+
+  function render() {
+    const idx = Number(slider.value);
+    const year = years[idx];
+    yearText.textContent = year;
+
+    globalImg.src = framePath(globalBase, "global", year);
+    blackbeltImg.src = framePath(blackbeltBase, "blackbelt", year);
+  }
+
+  function step(delta) {
+    let idx = Number(slider.value) + delta;
+    if (idx < 0) idx = years.length - 1;
+    if (idx >= years.length) idx = 0;
+    slider.value = idx;
+    render();
+  }
+
+  function togglePlay() {
+    playing = !playing;
+    playBtn.textContent = playing ? "Pause" : "Play";
+
+    if (playing) {
+      timer = setInterval(() => step(1), 800);
+    } else {
+      clearInterval(timer);
+    }
+  }
+
+  tickRow.innerHTML = years.map(y => `<span>${y}</span>`).join("");
+
+  slider.addEventListener("input", render);
+  playBtn.addEventListener("click", togglePlay);
+  stepBackBtn.addEventListener("click", () => step(-1));
+  stepForwardBtn.addEventListener("click", () => step(1));
+
+  render();
+</script>
+
+Above is a slider that shows the paleogeographic reconstructions of the region from 120 million years ago to the present day. The Black Belt region is shown on top in black and a global overview bleow.
+It is kind of hard to see but between around 90 and 65 million years ago the coast line at least passes over the black belt region.
+
+Anyways, in the article they also show how the modern demographics and politics of the region are influenced by this geological history, and I wanted to see if I could find the data and create something similar myself.
+Using the data in Refs. [2,3] I created a shapefile of the Black Belt region, which I then spatially joined with county boundaries from Ref. [4] to determine which counties are part of the Black Belt. I then obtained county-level election results from Ref. [5].
+<img 
+    src="images/dem_vote_share_map.png"
+    alt="Election results in the Black Belt region"
+    style="max-width:100%; height:auto;">
+
+<section>
+  <h2>References</h2>
+  <p>Geological data were obtained from the Alabama Geological Survey and Mississippi Geological Survey, paleogeographic reconstructions from the PaleoMAP PaleoCoastlines dataset (Kocsis & Scotese, 2023), 
+  and modern demographic and electoral data from the U.S. Census Bureau and the MIT Election Data and Science Lab</p>
+
+
+  <ul>
+    <li>
+      <strong>1. Paleocoastlines and continental margins.</strong>
+      Kocsis, A. T., &amp; Scotese, C. R. (2023).
+      <em>PaleoMAP PaleoCoastlines Dataset</em> (v7.2), Zenodo.
+      <a href="https://doi.org/10.5281/zenodo.7828387">doi:10.5281/zenodo.7828387</a>.
+      I used the <code>CS</code> coastline layers and <code>CM</code> continental-margin layers.
+    </li>
+    <li>
+      <strong>2. Alabama geology.</strong>
+      Geological Survey of Alabama / NGMDB.
+      <em>Geologic Map of Alabama (SM221)</em>.
+      Dataset used: <code>AL_2024_StateMap_SM221</code>.
+      Relevant units include Prairie Bluff Chalk, Demopolis Chalk, and Mooreville Chalk.
+    </li>
+    <li>
+      <strong>3. Mississippi geology.</strong>
+      Mississippi Geological Survey / MDEQ.
+      <em>Geologic Map of Mississippi</em>.
+      Dataset used: <code>MS_Geology_1969.shp</code>.
+    </li>
+    <li>
+      <strong>4. County boundaries.</strong>
+      U.S. Census Bureau.
+      <em>TIGER/Line county shapefiles</em>.
+      Used for county geometries and spatial joins.
+    </li>
+    <li>
+      <strong>5. Election results.</strong>
+      MIT Election Data and Science Lab.
+      <em>County Presidential Election Returns, 2000–2024</em>.
+      Dataset used: <code>countypres_2000-2024.csv</code>.
+    </li>
+    <li>
+      <strong>6. Demographics.</strong>
+      U.S. Census Bureau.
+      <em>2020 Decennial Census</em>.
+      Used to calculate county-level Black population share.
+    </li>
+  </ul>
+
+</section>
+</article>
+    </main>
+
+    
+  <div id="footer-placeholder" class="footer-content">2024-09-27</div>
+
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</body>
+</html>
