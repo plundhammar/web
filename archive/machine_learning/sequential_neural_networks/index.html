@@ -146,23 +146,23 @@ for epoch in range(num_epochs):
 </p>
 <p>Above is for the training data, which we would expect the model to be able to describe (it has already seen it many times!).  Of all the training data, the best model where able to label 80.08 % of the fish specis correctly and 19.92 % incorrectly.</p>
 <p>Below is the amount of correct predictions for the training data (data the model has not yet seen).</p>
-<p><img loading="lazy" src="../../../../assets/images/test_data_1.png" alt="Title"  />
+<p><img loading="lazy" src="images/test_data_1.png" alt="Title"  />
 </p>
 <p>Accually, for the test data the same percentage of correct and incorrect labeling were produced, which seems a bit odd.  it kind of seems that the model is not able to attain the data characteristics fully and sort of asymptotes to some best version of this specific model. Looking closer at what species the model has trubble labeling below,</p>
-<p><img loading="lazy" src="../../../../assets/images/detail_view_1.png" alt="Title"  />
+<p><img loading="lazy" src="images/detail_view_1.png" alt="Title"  />
 </p>
 <p>we see that the model never really gets the labeling of <strong>Otolithoides biauritus</strong> and <strong>Setipinna taty</strong> right. Since they account for abut $21~%$ of the test_data it makes sense why the amount of correct predictions never really gets higher than about $79~%$. However, it is not yet clear <em>why</em> the model has so much trubble predicting the species name of these specific species. Well, looking at the data for these two species,</p>
-<p><img loading="lazy" src="../../../../assets/images/subset.png" alt="Title"  />
+<p><img loading="lazy" src="images/subset.png" alt="Title"  />
 </p>
 <p>we see that they are very similar in weight and length and given a velua of the weight and length, it is basically 50/50 whihc label between the two the model will choose.</p>
 <p>We can test to remove one of them and retrain the data on the subset of data containg all but the species <em>Otolithoides biauritus</em>.  That is , we consider the following data set.</p>
-<p><img loading="lazy" src="../../../../assets/images/without_spec.png" alt="Title"  />
+<p><img loading="lazy" src="images/without_spec.png" alt="Title"  />
 </p>
 <p>Training with this data set for the same parameters we get the loss function behaviour below.</p>
-<p><img loading="lazy" src="../../../../assets/images/entropy_loss_2.png" alt="Title"  />
+<p><img loading="lazy" src="images/entropy_loss_2.png" alt="Title"  />
 </p>
 <p>And the amount of correct guesses is accually a bit better.</p>
-<p><img loading="lazy" src="../../../../assets/images/test_data_2.png" alt="Title"  />
+<p><img loading="lazy" src="images/test_data_2.png" alt="Title"  />
 </p>
 <p>Of the total number of labels of the test data, the best model were able to label <strong>88.25 %</strong> correctly and just <strong>11.75 %</strong> incorrectly.</p>
 <h2 id="conclusions">Conclusions<a hidden class="anchor" aria-hidden="true" href="#conclusions">#</a></h2>

@@ -22,7 +22,8 @@
     <main>
          <a href="../">-return-</a> 
         <article>
-<h2>Introduction</h2>
+<br> 
+
 I recently came accross the term "Black Belt" in a <a href="https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/">reddit post</a>, which led me to learn about the geological history of the region and how it has influenced its modern demographics and politics. 
 Further research led me to another <a href="https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/">reddit post</a> that seemed to be the source of the first one, and which led me to the original <a href="https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/">article</a> that excellently explained the phenomenon.
 
@@ -31,18 +32,28 @@ Further research led me to another <a href="https://www.reddit.com/r/MapPorn/com
     alt="Black Belt region map"
     style="max-width:100%; height:auto;">
 <p style="font-size:0.9rem; color:#333; text-align:center;"> The Black Belt stretching over Mississippi and Alabama</p>
-As far as I understood, the Black Belt is a region in the southern United States that stretches across parts of Alabama and Mississippi (however only shown for Alabama in the post), named for its rich, dark soil that was ideal for cotton farming. 
-This fertile soil was formed from the chalk deposits of the Cretaceous period, which were laid down when the area was covered by a shallow sea (about 65-90 million years ago). The chalk was formed from the accumulation of microscopic marine organisms, and over time it created a thick layer of sediment that eventually became the rich soil of the Black Belt.
-<br><br>
+
+The soil originates from chalk deposits formed in a shallow sea during the late Cretaceous period, roughly 65–90 million years ago. 
+In the 19th century this fertile land became a major center of cotton production, which relied heavily on enslaved labor.
+
+After the Civil War many Black Americans remained in the region as sharecroppers and tenant farmers. 
+As a result, the counties in this belt still have a high share of Black residents today and tend to vote strongly Democratic.
+
+I liked the visualizations in the original article and wanted to see if I could recreate them myself using publicly available data.
+<h2>The Black Belt formation</h2>
+The Cretaceous period was between about 145 and 66 million years ago. 
+During this time the area that is now the Black Belt was covered by a shallow sea, which was home to a diverse array of marine life. 
+
 <img 
     src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kronosaurus_hunt1DB.jpg/1280px-Kronosaurus_hunt1DB.jpg"
     alt="Kronosaurus hunting illustration"
     style="max-width:100%; height:auto;">
 <p style="font-size:0.8rem; color:#555; text-align:center;">The kind of creatures that lived under the creation of the Black Belt, by David Krentz (source: <a href="https://en.wikipedia.org/wiki/File:Kronosaurus_hunt1DB.jpg">Wikimedia Commons</a>)</p>
 <br><br>
-I thought the visuals in the original article were very nice and wanted to see if I could find the data and create something similar myself. To see the creation of the Black Belt and how it evolved over time, I found a dataset of paleogeographic reconstructions from the PaleoMAP PaleoCoastlines dataset (Kocsis & Scotese, 2023), which provides detailed maps of the Earth's coastlines and continental margins at various points in geological history Ref [1], and the Black Belt is from that dataset in Refs. [2,3]. 
 
-
+From the dataset in Ref. [1] a slider over the paleogeographic reconstructions of the region from 120 million years ago to the present day could be created. 
+The Black Belt region is shown on top in black and was recreated with the data in Ref [2-4].
+It is a little bit difficult to see but between around 90 and 65 million years ago the coast line at least passes over the black belt region, which is when the chalk deposits that formed the soil of the Black Belt were formed.
 <div class="paleo-slider">
   <div class="paleo-slider-top">
     <span><strong><span id="yearText">90</span> million years ago</strong></span>
@@ -208,22 +219,71 @@ I thought the visuals in the original article were very nice and wanted to see i
   render();
 </script>
 
-Above is a slider that shows the paleogeographic reconstructions of the region from 120 million years ago to the present day. The Black Belt region is shown on top in black and a global overview bleow.
-It is kind of hard to see but between around 90 and 65 million years ago the coast line at least passes over the black belt region.
-
-Anyways, in the article they also show how the modern demographics and politics of the region are influenced by this geological history, and I wanted to see if I could find the data and create something similar myself.
-Using the data in Refs. [2,3] I created a shapefile of the Black Belt region, which I then spatially joined with county boundaries from Ref. [4] to determine which counties are part of the Black Belt. I then obtained county-level election results from Ref. [5].
+<h2>Election results</h2>
+From Ref. [5] a map of the 2020 presidential election results in the Black Belt region could be created. 
+It shows a strong correlation between the areas that were covered by the sea during the Cretaceous period 
+and the areas that voted for the Democratic candidate.
 <img 
     src="images/dem_vote_share_map.png"
     alt="Election results in the Black Belt region"
     style="max-width:100%; height:auto;">
 
+However, I can also see that there is a big red region around the border between Louisianna and Mississippi there to the left.
+It turns out that this region is the Mississippi Delta, created from sediments of the Mississippi River and known for its fertile soil.
+<img 
+    src="images/map_boundary_black_belt_and_mississippi_alluvial_plain.png"
+    alt="Mississippi Delta map"
+    style="max-width:100%; height:auto;">
+<p style="font-size:0.9rem; color:#333; text-align:center;">The Mississippi Delta region (black region to the left), which is not part of the Black Belt but has similar geology and voting patterns</p>
+Layed ontop of each other we see the correlation between fertile grounds and Democratic voting patterns.
+
+<img 
+    src="images/dem_vote_share_map_with_map_boundary.png"
+    alt="Election results with Black Belt and Mississippi Delta boundaries"
+    style="max-width:100%; height:auto;">
+<p style="font-size:0.9rem; color:#333; text-align:center;">Election results with Black Belt and Mississippi Delta boundaries</p>
+
+Now, from Ref. [6] a map of the Black population share in the region could be created, which shows a very strong correlation with the areas that were covered by the sea during the Cretaceous period and the areas that voted for the Democratic candidate.
+<img 
+    src="images/black_population_map.png"
+    alt="Black population share"
+    style="max-width:100%; height:auto;">
+<p style="font-size:0.9rem; color:#333; text-align:center;">Black population share in Mississippi and Alabama with outlines of the Black Belt and Mississippi Delta</p>
+
+<h1>Conclusion</h1>
+<p>The story can be summarized as a long chain of events:</p>
+
+<ol>
+  <li>A Cretaceous sea</li>
+  <li>Chalk soil formation</li>
+  <li>Cotton agriculture</li>
+  <li>Enslaved labor</li>
+  <li>A persistent Black population</li>
+  <li>Modern Democratic voting patterns</li>
+</ol>
+
+<p>
+A coastline that disappeared roughly 75 million years ago still leaves a visible imprint
+on the electoral map of the United States.
+</p>
 <section>
   <h2>References</h2>
-  <p>Geological data were obtained from the Alabama Geological Survey and Mississippi Geological Survey, paleogeographic reconstructions from the PaleoMAP PaleoCoastlines dataset (Kocsis & Scotese, 2023), 
-  and modern demographic and electoral data from the U.S. Census Bureau and the MIT Election Data and Science Lab</p>
-
-
+  <h3>Links and Resources</h3>
+  <ul>
+    <li>
+      <strong>First reddit post.</strong>
+      u/DeepSeaNews. (2026). How a 100 million-year-old coastline still shapes presidential elections [Reddit post]. Reddit. <a href="https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/">https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/</a>.
+    </li>
+    <li>
+      <strong>Second reddit post.</strong>
+      u/DeepSeaNews. (2014). How a 100 million-year-old coastline affects modern voting patterns [Reddit post]. Reddit. <a href="https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/">https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/</a>.
+    </li>
+    <li>
+      <strong>Original article.</strong>
+      Deep Sea News. (2012). How presidential elections are impacted by a 100 million-year-old coastline. <em>Deep Sea News</em>. <a href="https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/">https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/</a>.
+    </li>
+  </ul>
+  <h3>Datasets</h3>
   <ul>
     <li>
       <strong>1. Paleocoastlines and continental margins.</strong>
@@ -270,7 +330,7 @@ Using the data in Refs. [2,3] I created a shapefile of the Black Belt region, wh
     </main>
 
     
-  <div id="footer-placeholder" class="footer-content">2024-09-27</div>
+  <div id="footer-placeholder" class="footer-content">2026-03-11</div>
 
     <script>
   MathJax = {
