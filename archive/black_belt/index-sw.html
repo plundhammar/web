@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The fertile black belt</title>
+    <title>Black Belt-området</title>
     <link rel="stylesheet" href="../../../../styles.css"> <script type="text/javascript" id="MathJax-script" async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
@@ -11,62 +11,62 @@
 <body>
 
     <header>
-        <h1>The fertile black belt</h1>
+        <h1>Black Belt-området</h1>
         <nav>
-            <a href="../../../../index.html">Home</a>
-            <a href="../../../index.html">Archive</a>
-            <a href="../../../../resume/index.html">Résumé</a>
+            <a href="../../../../index.html">Hem</a>
+            <a href="../../../index.html">Arkiv</a>
+            <a href="../../../../resume/index.html">CV</a>
         </nav>
     </header>
 
     <main>
       <div class="top-links">
-    <a class="return-link" href="../../index.html">-return-</a>
-    <a class="lang-link" href="index-sw.html">-sv-</a>
+    <a class="return-link" href="../../index.html">-tillbaka-</a>
+    <a class="lang-link" href="index.html">-en-</a>
 </div>
         <article>
 <br> 
 
-I recently came accross the term "Black Belt" in a <a href="https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/">reddit post</a> which showed 
-an interesting correlation between an antient coastline and modern voting patterns in the US.
+Jag stötte nyligen på termen "Black Belt" i ett <a href="https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/">inlägg på Reddit</a> som visade 
+en intressant korrelation mellan en kustlinje från Kritaperioden och röstningsmönster i USA.
 
-What I could find I think this is the orignal <a href="https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/">reddit post</a>  which in turn references to the original <a href="https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/">article</a> that excellently explained the phenomenon.
+Så vitt jag kunde hitta tror jag att detta är det ursprungliga <a href="https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/">Reddit-inlägget</a>, som i sin tur hänvisar till den ursprungliga <a href="https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/">artikeln</a> som på ett utmärkt sätt förklarade fenomenet.
 
 <img 
     src="images/map_boundary_black_belt.png"
-    alt="Black Belt region map"
+    alt="Karta över Black Belt-regionen"
     style="max-width:100%; height:auto;">
-<p style="font-size:0.9rem; color:#333; text-align:center;"> The Black Belt stretching over Mississippi and Alabama</p>
-The Black Belt is a region in the southern United States that stretches across parts of Mississippi and Alabama. 
-It is named for its rich and dark soil.
-The soil originates from chalk deposits formed in a shallow sea during the late Cretaceous period, roughly 65–90 million years ago. 
-In the 19th century this fertile land became a major center of cotton production, which relied heavily on enslaved labor.
+<p style="font-size:0.9rem; color:#333; text-align:center;">Black Belt som sträcker sig över Mississippi och Alabama</p>
+Black Belt är en region i södra USA som sträcker sig över delar av Mississippi och Alabama. 
+Den har fått sitt namn från sin rika och mörka jord.
+Jorden härstammar från kalkavlagringar som bildades i ett grunt hav längs med en kustlinje under den sena kritaperioden, för ungefär 65–90 miljoner år sedan. 
+Under 1800-talet blev denna bördiga mark en viktig plats för bomullsproduktion, som drevs framåt med slavarbete.
 
-After the Civil War many Black Americans remained in the region as sharecroppers and tenant farmers. 
-As a result, the counties in this belt still have a high share of Black residents today and tend to vote strongly Democratic.
+Efter amerikanska inbördeskriget blev många svarta amerikaner kvar i regionen som lantarbetare. 
+Som ett resultat har regiornerna i detta bälte än i dag en hög andel svarta invånare och tenderar att rösta starkt demokratiskt.
 
-I liked the visualizations in the original article and wanted to see if I could recreate them myself using publicly available data.
-<h2>The Black Belt formation</h2>
-The Cretaceous period was between about 145 and 66 million years ago. 
-During this time the area that is now the Black Belt was covered by a shallow sea, which was home to a diverse array of marine life. 
+Jag tyckte om visualiseringarna i originalartikeln och ville se om jag kunde återskapa dem själv med hjälp av offentligt tillgänglig data.
+<h2>Black Belt-området</h2>
+Kritaperioden varade från ungefär 145 till 66 miljoner år sedan. 
+Under denna tid var området som i dag är Black Belt täckt av ett grunt hav/kustlinje, som var hem för ett rikt marint liv. 
 
 <img 
     src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Kronosaurus_hunt1DB.jpg/1280px-Kronosaurus_hunt1DB.jpg"
-    alt="Kronosaurus hunting illustration"
+    alt="Illustration av jagande Kronosaurus"
     style="max-width:100%; height:auto;">
-<p style="font-size:0.8rem; color:#555; text-align:center;">The kind of creatures that lived under the creation of the Black Belt, by David Krentz (source: <a href="https://en.wikipedia.org/wiki/File:Kronosaurus_hunt1DB.jpg">Wikimedia Commons</a>)</p>
+<p style="font-size:0.8rem; color:#555; text-align:center;">Den typ av djur som levde när grunden till Black Belt bildades, av David Krentz (källa: <a href="https://en.wikipedia.org/wiki/File:Kronosaurus_hunt1DB.jpg">Wikimedia Commons</a>)</p>
 <br><br>
 
-From the dataset in Ref. [1] a slider over the paleogeographic reconstructions of the region from 120 million years ago to the present day could be created. 
-The Black Belt region is shown on top in black and was recreated with the data in Ref [2-4].
-It is a little bit difficult to see but between around 70 and 65 million years ago the coast line (marked in the green rectangle) I think is the 
-place in where the Back belt was formed. Note the image on top is where the Black Belt is located today.
+Utifrån datasetet i Ref. [1] kunde en slider över de rekonstruerade landmassorna och de tektoniska plattornas röresle från 120 miljoner år sedan fram till i dag skapas. 
+Black Belt-regionen visas överst i svart och återskapades med data från Ref. [2-4].
+Det är lite svårt att se, men någon gång mellan ungefär 70 och 65 miljoner år sedan tror jag att kustlinjen (markerad i den gröna rektangeln) är den 
+plats där Black Belt bildades. Notera att bilden överst visar var Black Belt ligger i dag.
 <div class="paleo-slider">
   <div class="paleo-slider-top">
-    <span><strong><span id="yearText">90</span> million years ago</strong></span>
+    <span><strong><span id="yearText">90</span> miljoner år sedan</strong></span>
     <div class="paleo-buttons">
       <button id="stepBackBtn" type="button">←</button>
-      <button id="playBtn" type="button">Play</button>
+      <button id="playBtn" type="button">Spela</button>
       <button id="stepForwardBtn" type="button">→</button>
     </div>
   </div>
@@ -76,11 +76,11 @@ place in where the Back belt was formed. Note the image on top is where the Blac
 
   <div class="paleo-grid">
     <figure>
-      <img id="blackbeltImg" alt="Black Belt paleogeography frame" />
+      <img id="blackbeltImg" alt="Paleogeografisk bild av Black Belt" />
     </figure>
 
     <figure>
-      <img id="globalImg" alt="Global paleogeography frame" />
+      <img id="globalImg" alt="Global paleogeografisk bild" />
     </figure>
   </div>
 </div>
@@ -207,7 +207,7 @@ place in where the Back belt was formed. Note the image on top is where the Blac
 
   function togglePlay() {
     playing = !playing;
-    playBtn.textContent = playing ? "Pause" : "Play";
+    playBtn.textContent = playing ? "Paus" : "Spela";
 
     if (playing) {
       timer = setInterval(() => step(1), 800);
@@ -226,109 +226,109 @@ place in where the Back belt was formed. Note the image on top is where the Blac
   render();
 </script>
 
-<h2>Election results</h2>
-From Ref. [5] a map of the 2020 presidential election results in the Black Belt region could be created. 
-It shows a strong correlation between the areas that were covered by the sea during the Cretaceous period 
-and the areas that voted for the Democratic candidate.
+<h2>Valresultat</h2>
+Utifrån Ref. [5] kunde en karta över presidentvalet 2020 i Black Belt-regionen skapas. 
+Den visar en stark korrelation mellan de områden som låg under havet/längs med kustlinjen under kritaperioden 
+och de områden som röstade på demokraterna.
 <img 
     src="images/dem_vote_share_map.png"
-    alt="Election results in the Black Belt region"
+    alt="Valresultat i Black Belt-regionen"
     style="max-width:100%; height:auto;">
 
-However, I can also see that there is a big blue region around the border between Louisianna and Mississippi there to the left.
-It turns out that this region is the Mississippi Delta, created from sediments of the Mississippi River and known for its fertile soil.
+Jag kan dock också se att det finns ett stort blått område kring gränsen mellan Louisiana och Mississippi till vänster.
+Det visar sig att denna region är Mississippi Delta, skapad av sediment från Mississippi-floden och känd för sin bördiga jord.
 <img 
     src="images/map_boundary_black_belt_and_mississippi_alluvial_plain.png"
-    alt="Mississippi Delta map"
+    alt="Karta över Mississippi Delta"
     style="max-width:100%; height:auto;">
-<p style="font-size:0.9rem; color:#333; text-align:center;">The Mississippi Delta region (black region to the left), which is not part of the Black Belt but has similar geology and voting patterns</p>
-Layed ontop of each other we see the correlation between fertile grounds and Democratic voting patterns.
+<p style="font-size:0.9rem; color:#333; text-align:center;">Mississippi Delta-regionen (det svarta området till vänster), som inte är en del av Black Belt men har liknande geologi och röstningsmönster</p>
+Lägger man dem ovanpå varandra ser man korrelationen mellan bördig mark och demokratiska röstningsmönster.
 
 <img 
     src="images/dem_vote_share_map_with_map_boundary.png"
-    alt="Election results with Black Belt and Mississippi Delta boundaries"
+    alt="Valresultat med gränser för Black Belt och Mississippi Delta"
     style="max-width:100%; height:auto;">
-<p style="font-size:0.9rem; color:#333; text-align:center;">Election results with Black Belt and Mississippi Delta boundaries</p>
+<p style="font-size:0.9rem; color:#333; text-align:center;">Valresultat med gränser för Black Belt och Mississippi Delta</p>
 
-Now, from Ref. [6] a map of the Black population share in the region could be created, which shows a very strong correlation with the areas that were covered by the sea during the Cretaceous period and the areas that voted for the Democratic candidate.
+Från Ref. [6] kunde en karta över andelen svart befolkning i regionen skapas, som visar en mycket stark korrelation med de områden som låg under havet under kritaperioden och de områden som röstade på demokraterna.
 <img 
     src="images/black_population_map.png"
-    alt="Black population share"
+    alt="Andel svart befolkning"
     style="max-width:100%; height:auto;">
-<p style="font-size:0.9rem; color:#333; text-align:center;">Black population share in Mississippi and Alabama with outlines of the Black Belt and Mississippi Delta</p>
+<p style="font-size:0.9rem; color:#333; text-align:center;">Andel svart befolkning i Mississippi och Alabama med konturer av Black Belt och Mississippi Delta</p>
 
-<h1>Conclusion</h1>
-<p>The story can be summarized as a long chain of events:</p>
+<h1>Slutsats</h1>
+<p>Berättelsen kan sammanfattas som en lång kedja av händelser:</p>
 
 <ol>
-  <li>A Cretaceous sea</li>
-  <li>Chalk soil formation</li>
-  <li>Cotton agriculture</li>
-  <li>Enslaved labor</li>
-  <li>A persistent Black population</li>
-  <li>Modern Democratic voting patterns</li>
+  <li>Ett grunt hav/kustlinje under Kritaperioden</li>
+  <li>Bildning av kalkjord</li>
+  <li>Bomullsodling</li>
+  <li>Slavarbete</li>
+  <li>En bestående svart befolkning</li>
+  <li>Demokratiska röstningsmönster</li>
 </ol>
 
 <p>
-A coastline that disappeared roughly 75 million years ago still leaves a visible imprint
-on the electoral map of the United States.
+En kustlinje som försvann för ungefär 75 miljoner år sedan lämnar fortfarande ett synligt avtryck
+på USA:s valkarta.
 </p>
 <section>
-  <h2>References</h2>
-  <h3>Links and Resources</h3>
+  <h2>Referenser</h2>
+  <h3>Länkar</h3>
   <ul>
     <li>
-      <strong>First reddit post.</strong>
+      <strong>Första Reddit-inlägget.</strong>
       u/DeepSeaNews. (2026). How a 100 million-year-old coastline still shapes presidential elections [Reddit post]. Reddit. <a href="https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/">https://www.reddit.com/r/interestingasfuck/comments/1rom5th/how_a_100millionyearold_coastline_still_shapes/</a>.
     </li>
     <li>
-      <strong>Second reddit post.</strong>
+      <strong>Andra Reddit-inlägget.</strong>
       u/DeepSeaNews. (2014). How a 100 million-year-old coastline affects modern voting patterns [Reddit post]. Reddit. <a href="https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/">https://www.reddit.com/r/MapPorn/comments/2e4o2r/how_a_100_million_year_old_coastline_affects/</a>.
     </li>
     <li>
-      <strong>Original article.</strong>
+      <strong>Originalartikel.</strong>
       Deep Sea News. (2012). How presidential elections are impacted by a 100 million-year-old coastline. <em>Deep Sea News</em>. <a href="https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/">https://deepseanews.com/2012/06/how-presidential-elections-are-impacted-by-a-100-million-year-old-coastline/</a>.
     </li>
   </ul>
-  <h3>Datasets</h3>
+  <h3>Dataset</h3>
   <ul>
     <li>
-      <strong>1. Paleocoastlines and continental margins.</strong>
+      <strong>1. Paleokustlinjer och kontinentmarginaler.</strong>
       Kocsis, A. T., &amp; Scotese, C. R. (2023).
       <em>PaleoMAP PaleoCoastlines Dataset</em> (v7.2), Zenodo.
       <a href="https://doi.org/10.5281/zenodo.7828387">doi:10.5281/zenodo.7828387</a>.
-      I used the <code>CS</code> coastline layers and <code>CM</code> continental-margin layers.
+      Jag använde kustlinjelagren <code>CS</code> och kontinentmarginal-lagren <code>CM</code>.
     </li>
     <li>
-      <strong>2. Alabama geology.</strong>
+      <strong>2. Alabamas geologi.</strong>
       Geological Survey of Alabama / NGMDB.
       <em>Geologic Map of Alabama (SM221)</em>.
-      Dataset used: <code>AL_2024_StateMap_SM221</code>.
-      Relevant units include Prairie Bluff Chalk, Demopolis Chalk, and Mooreville Chalk.
+      Använt dataset: <code>AL_2024_StateMap_SM221</code>.
+      Relevanta enheter inkluderar Prairie Bluff Chalk, Demopolis Chalk och Mooreville Chalk.
     </li>
     <li>
-      <strong>3. Mississippi geology.</strong>
+      <strong>3. Mississippis geologi.</strong>
       Mississippi Geological Survey / MDEQ.
       <em>Geologic Map of Mississippi</em>.
-      Dataset used: <code>MS_Geology_1969.shp</code>.
+      Använt dataset: <code>MS_Geology_1969.shp</code>.
     </li>
     <li>
-      <strong>4. County boundaries.</strong>
+      <strong>4. Länsgränser.</strong>
       U.S. Census Bureau.
       <em>TIGER/Line county shapefiles</em>.
-      Used for county geometries and spatial joins.
+      Användes för länsgeometrier och spatiala joins.
     </li>
     <li>
-      <strong>5. Election results.</strong>
+      <strong>5. Valresultat.</strong>
       MIT Election Data and Science Lab.
       <em>County Presidential Election Returns, 2000–2024</em>.
-      Dataset used: <code>countypres_2000-2024.csv</code>.
+      Använt dataset: <code>countypres_2000-2024.csv</code>.
     </li>
     <li>
-      <strong>6. Demographics.</strong>
+      <strong>6. Demografi.</strong>
       U.S. Census Bureau.
       <em>2020 Decennial Census</em>.
-      Used to calculate county-level Black population share.
+      Användes för att beräkna andelen svart befolkning på länsnivå.
     </li>
   </ul>
 

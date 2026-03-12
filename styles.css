@@ -70,3 +70,15 @@ header nav a {
     margin-top: 20px; /* Adjust this value for the top margin */
     margin-bottom: 20px; /* Adjust this value for the bottom margin */
 }
+
+.top-links {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 0px 0;
+    /*font-family: monospace;*/
+    font-size: 0.9rem;
+}
+.top-links a {
+    text-decoration: none;
+    color: black;
+}
