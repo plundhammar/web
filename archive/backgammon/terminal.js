@@ -8,7 +8,104 @@ const output = document.querySelector('#terminal-output');
 const status = document.querySelector('#connection-status');
 const refreshButton = document.querySelector('#refresh-button');
 const navButtons = [...document.querySelectorAll('[data-view]')];
+const rollDiceButton = document.querySelector('#roll-dice-button');
+const diceRollCounter = document.querySelector('#dice-roll-counter');
+const lastDie = document.querySelector('#last-die');
 
+const DICE_COUNT_URL =
+  'https://script.google.com/macros/s/AKfycbyXiiXDjZI-RC7TYrfUQCuJ_gQ-P2rjAVxm10Vc7YLzGZ2-_oSSJoE2HqRmOYsbQ_8b/exec?action=dice-count';
+
+const ROLL_DICE_URL =
+  'https://script.google.com/macros/s/AKfycbyXiiXDjZI-RC7TYrfUQCuJ_gQ-P2rjAVxm10Vc7YLzGZ2-_oSSJoE2HqRmOYsbQ_8b/exec?action=roll-dice';
+async function loadDiceRollCount() {
+  if (!diceRollCounter) {
+    return;
+  }
+
+  try {
+    const response = await fetch(DICE_COUNT_URL, {
+      cache: 'no-store',
+    });
+
+    const payload = await response.json();
+
+    if (!payload.ok) {
+      throw new Error(payload.error || 'Could not load dice count.');
+    }
+
+    diceRollCounter.textContent = formatCounter(payload.count);
+  } catch (error) {
+    console.error(error);
+    diceRollCounter.textContent = '??????';
+  }
+}
+
+
+async function rollDice() {
+  if (!rollDiceButton || !diceRollCounter || !lastDie) {
+    return;
+  }
+
+  const lastRollAt = Number(
+    localStorage.getItem('backgammon_last_dice_roll_at') || 0
+  );
+
+  const now = Date.now();
+
+  if (now - lastRollAt < 2_000) {
+    return;
+  }
+
+  rollDiceButton.disabled = true;
+  rollDiceButton.textContent = 'Rullar...';
+
+  try {
+    const dieValue = Math.floor(Math.random() * 6) + 1;
+
+    // Visar kastet direkt och låter det ligga kvar.
+    lastDie.textContent = dieFace(dieValue);
+    lastDie.setAttribute(
+      'aria-label',
+      `Senaste tärningskast: ${dieValue}`
+    );
+
+    const response = await fetch(ROLL_DICE_URL, {
+      method: 'POST',
+      cache: 'no-store',
+    });
+
+    const payload = await response.json();
+
+    if (!payload.ok) {
+      throw new Error(payload.error || 'Could not register dice roll.');
+    }
+
+    localStorage.setItem(
+      'backgammon_last_dice_roll_at',
+      String(now)
+    );
+
+    // Uppdaterar bara räknaren. Tärningen ligger kvar.
+    diceRollCounter.textContent = formatCounter(payload.count);
+  } catch (error) {
+    console.error(error);
+    lastDie.textContent = '!';
+    lastDie.setAttribute(
+      'aria-label',
+      'Kunde inte registrera tärningskastet'
+    );
+  } finally {
+    window.setTimeout(() => {
+      rollDiceButton.disabled = false;
+      rollDiceButton.textContent = 'Rulla tärning';
+    }, 900);
+  }
+}
+
+
+function formatCounter(value) {
+  return String(Number(value) || 0).padStart(8, '0');
+}
 
 async function loadArchive() {
   status.textContent = 'Ansluter till spelarkivet…';
@@ -47,6 +144,53 @@ async function loadArchive() {
   }
 }
 
+function dieFace(value) {
+  const faces = {
+    1: `   1
++-----+
+|     |
+|  o  |
+|     |
++-----+`,
+
+    2: `   2
++-----+
+|  o  |
+|     |
+|  o  |
++-----+ `,
+
+    3: `   3
++-----+
+|  o  |
+|  o  |
+|  o  |
++-----+`,
+
+    4: `   4
++-----+
+| o o |
+|     |
+| o o |
++-----+`,
+
+    5: `   5
++-----+
+| o o |
+|  o  |
+| o o |
++-----+`,
+
+    6: `   6
++---+
+| o o |
+| o o |
+| o o |
++---+`,
+  };
+
+  return faces[value] || '?';
+}
 
 function renderActiveView() {
   if (!archiveData) {
@@ -276,5 +420,7 @@ document.addEventListener('keydown', event => {
   renderActiveView();
 });
 
-
+rollDiceButton?.addEventListener('click', rollDice);
+loadDiceRollCount();
 loadArchive();
+

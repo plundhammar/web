@@ -24,7 +24,7 @@
 
         <p class="welcome-line">
           <marquee scrollamount="4">
-            ★ P✦ · ✧ · ★ · ✧ · ✦ · ★ · ✧ · ✦ ★
+            ★ BACKGAMMON ★
           </marquee>
         </p>
 
@@ -89,10 +89,23 @@
     [ <a class="footer-link" href="../">← Tillbaka till arkivet</a> ]
   </p>
 
-  <p>
-    <span class="counter-label">VISITORS:</span>
-    <span class="visitor-counter">00001337</span>
-  </p>
+  <p class="footer-links">
+  [ <button id="refresh-button" class="footer-button">Refresh</button> ]
+  ·
+  [ <button id="roll-dice-button" class="footer-button">Rulla tärning</button> ]
+</p>
+
+<p>
+  <span class="counter-label">TÄRNINGAR RULLADE:</span>
+  <span id="dice-roll-counter" class="visitor-counter">LADDAR...</span>
+</p>
+
+<p class="last-roll-line">
+  <span class="counter-label">SENASTE KAST:</span>
+  <span id="last-die" class="last-die" aria-label="Senaste tärningskast">
+    ?
+  </span>
+</p>
 
   <p class="footer-links">
     [ <button id="refresh-button" class="footer-button">Refresh</button> ]
@@ -103,6 +116,7 @@
   <p class="copyright">
     © Per &amp; Alice Game Archive · No cookies, only dice.
   </p>
+  
 </footer>
     </main>
 
