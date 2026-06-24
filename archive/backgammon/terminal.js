@@ -30,7 +30,7 @@ async function loadDiceRollCount() {
     const payload = await response.json();
 
     if (!payload.ok) {
-      throw new Error(payload.error || 'Could not load dice count.');
+      throw new Error(payload.error || 'Kunde inte registrera tärningskast.');
     }
 
     diceRollCounter.textContent = formatCounter(payload.count);
@@ -77,7 +77,7 @@ async function rollDice() {
     const payload = await response.json();
 
     if (!payload.ok) {
-      throw new Error(payload.error || 'Could not register dice roll.');
+      throw new Error(payload.error || 'Kune inte registrera tärningskastet.');
     }
 
     localStorage.setItem(
@@ -182,11 +182,11 @@ function dieFace(value) {
 +-----+`,
 
     6: `   6
-+---+
++-----+
 | o o |
 | o o |
 | o o |
-+---+`,
++-----+`,
   };
 
   return faces[value] || '?';
@@ -207,9 +207,13 @@ function renderActiveView() {
     return;
   }
 
+  if (activeView === 'awards') {
+    renderAwards();
+    return;
+  }
+
   renderOverview();
 }
-
 
 function renderOverview() {
   const { overview } = archiveData;
@@ -220,11 +224,11 @@ function renderOverview() {
     <h2 class="section-title">BACKGAMMON // TOTALT</h2>
 
     <div class="stats-grid">
-      ${statCard('Games played', overview.totalGames)}
-      ${statCard('First game', overview.firstGameDate || '—')}
-      ${statCard('Latest game', overview.latestGameDate || '—')}
+      ${statCard('Antal spel', overview.totalGames)}
+      ${statCard('Första spel', overview.firstGameDate || '—')}
+      ${statCard('Senaste spel', overview.latestGameDate || '—')}
       ${statCard(
-        'Current streak',
+        'Nuvarande vinstsvit',
         overview.currentStreak
           ? `${escapeHtml(overview.currentStreak.player)} × ${overview.currentStreak.length}`
           : '—'
@@ -273,6 +277,66 @@ function renderLocations() {
   `;
 }
 
+function renderAwards() {
+  const awards = archiveData.awards;
+
+  if (!awards) {
+    output.innerHTML = `
+      <h2 class="section-title">UTMÄRKELSER</h2>
+      <p class="muted">Utmärkelser kunde inte laddas.</p>
+    `;
+    return;
+  }
+
+  const { diceFavorite, revengeKing } = awards;
+
+  output.innerHTML = `
+    <h2 class="section-title">BACKGAMMON-UTMÄRKELSER</h2>
+
+    <section class="award-card award-card--dice">
+      <p class="award-title">★ TÄRNINGARNAS GUNSTLING ★</p>
+
+      <p class="award-description">
+        Flest vunna poäng under de senaste
+        ${diceFavorite.periodGames} spelen.
+      </p>
+
+      <p class="award-winner">
+        ${escapeHtml(diceFavorite.winner)}
+      </p>
+
+      <p class="award-value">
+        ${diceFavorite.winningPoints} poäng
+      </p>
+
+      <p class="award-detail muted">
+        Alice: ${diceFavorite.alicePoints} poäng ·
+        Per: ${diceFavorite.perPoints} poäng
+      </p>
+    </section>
+
+    <section class="award-card award-card--revenge">
+      <p class="award-title">★ REVANSCHMÄSTAREN ★</p>
+
+      <p class="award-description">
+        Flest vinster direkt efter en egen förlust.
+      </p>
+
+      <p class="award-winner">
+        ${escapeHtml(revengeKing.winner)}
+      </p>
+
+      <p class="award-value">
+        ${revengeKing.winningCount} revanscher
+      </p>
+
+      <p class="award-detail muted">
+        Alice: ${revengeKing.aliceRevengeWins} ·
+        Per: ${revengeKing.perRevengeWins}
+      </p>
+    </section>
+  `;
+}
 
 function renderGameRow(game) {
   const date = formatGameDate(game.playedAt, game.datePrecision);
@@ -325,7 +389,7 @@ function formatGameDate(value, precision) {
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return 'Unknown date';
+    return 'Okänt datum';
   }
 
   const dateText = new Intl.DateTimeFormat('sv-SE', {
@@ -351,7 +415,7 @@ function formatGeneratedAt(value) {
   const date = new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    return 'UPDATED';
+    return 'UPPDATERAD';
   }
 
   return new Intl.DateTimeFormat('sv-SE', {
@@ -404,6 +468,10 @@ document.addEventListener('keydown', event => {
   if (key === '3') {
     activeView = 'locations';
   }
+
+  if (key === '4') {
+  activeView = 'awards';
+}
 
   if (key === 'r') {
     loadArchive();

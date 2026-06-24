@@ -341,7 +341,7 @@ h1 {
 .last-die {
   display: inline-block;
   min-width: 76px;
-  border: 2px outset #000000;
+  border: 0x outset #000000;
   padding: 5px 7px;
   color: #000000;
   background: #000000;
@@ -352,7 +352,6 @@ h1 {
   font-weight: bold;
   line-height: 1.05;
   text-align: left;
-  white-space: pre;
 }
 .footer-links {
   color: #00ffff;
@@ -422,4 +421,95 @@ h1 {
   .player-row span:last-child {
     grid-column: 1 / -1;
   }
+}
+
+.award-card {
+  margin-top: 18px;
+  border: 3px double #000080;
+  padding: 16px;
+  background: #ffffe8;
+}
+
+.award-card--dice {
+  background: #fff6b7;
+}
+
+.award-card--revenge {
+  background: #e7ffe7;
+}
+
+.award-title {
+  margin: 0 0 10px;
+  color: #000080;
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.award-description {
+  margin: 0;
+  color: #222222;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.award-winner {
+  margin: 16px 0 4px;
+  color: #cc0066;
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+
+.award-value {
+  margin: 0;
+  color: #000080;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.award-detail {
+  margin: 14px 0 0;
+  border-top: 1px dotted #777777;
+  padding-top: 10px;
+  font-size: 0.72rem;
+  text-align: center;
+}
+.dice-zone {
+  width: 100%;
+  margin: 18px auto 8px;
+  border-top: 1px dotted #777777;
+  padding-top: 14px;
+  text-align: center;
+}
+
+.dice-zone-label {
+  margin: 0 0 8px;
+  color: #ffff00;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+
+.last-die {
+  display: block;
+  width: max-content;
+  min-width: 112px;
+  margin: 14px auto 18px;
+  padding: 10px 14px;
+  color: #ffffff;
+  background: #000000;
+  border: 0;
+  box-shadow: none;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.08;
+  text-align: left;
+  white-space: pre;
 }
