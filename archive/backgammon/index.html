@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Per & Alice — Backgammon Archive"
+    />
+    <title>Backgammon</title>
+
+    <link rel="stylesheet" href="./terminal.css" />
+  </head>
+
+  <body>
+    <main class="page-shell">
+      <header class="site-header">
+        <div class="tiny-stars" aria-hidden="true">
+          ✦ · ✧ · ★ · ✧ · ✦ · ★ · ✧ · ✦
+        </div>
+
+        <p class="welcome-line">
+          <marquee scrollamount="4">
+            ★ P✦ · ✧ · ★ · ✧ · ✦ · ★ · ✧ · ✦ ★
+          </marquee>
+        </p>
+
+        <h1>
+          <span class="title-per">BACK</span>
+          <span class="title-alice">GAMMON</span>
+        </h1>
+
+        <p class="subtitle">BACKGAMMONARKIV · EST. 2024</p>
+
+        <p id="connection-status" class="connection-status">
+          ● CONNECTING TO THE GAME ARCHIVE...
+        </p>
+      </header>
+
+      <section class="intro-box">
+        <p>
+          <strong>VÄLKOMMEN!</strong><br />
+          Du har anlänt till det officiella backgammon-arkivet.
+        </p>
+      </section>
+
+      <nav class="retro-nav" aria-label="Navigering">
+        <button class="retro-button is-active" data-view="overview">
+          ★ ÖVERSIKT ★
+        </button>
+
+        <button class="retro-button" data-view="recent">
+          ★ SENASTE SPEL ★
+        </button>
+
+        <button class="retro-button" data-view="locations">
+          ★ PLATSER ★
+        </button>
+      </nav>
+
+      <section class="content-window">
+        <div class="window-titlebar">
+          <span>backgammon_resultat.exe</span>
+          <span class="window-controls">_ □ ×</span>
+        </div>
+
+        <section
+          id="terminal-output"
+          class="terminal-output"
+          aria-live="polite"
+        >
+          Laddar arkiv...
+        </section>
+      </section>
+
+      <aside class="fun-facts-box">
+        <p class="fun-facts-title">★ INFORMATION ★</p>
+
+        <p>
+          Sidan uppdateras när ett nytt spel har registrerats.
+        </p>
+      </aside>
+
+      <footer class="site-footer">
+  <p class="footer-links">
+    [ <a class="footer-link" href="../">← Tillbaka till arkivet</a> ]
+  </p>
+
+  <p>
+    <span class="counter-label">VISITORS:</span>
+    <span class="visitor-counter">00001337</span>
+  </p>
+
+  <p class="footer-links">
+    [ <button id="refresh-button" class="footer-button">Refresh</button> ]
+    ·
+    [ Backgammon Forever ]
+  </p>
+
+  <p class="copyright">
+    © Per &amp; Alice Game Archive · No cookies, only dice.
+  </p>
+</footer>
+    </main>
+
+    <script src="./terminal.js"></script>
+  </body>
+</html>
