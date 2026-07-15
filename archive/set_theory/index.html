@@ -53,6 +53,9 @@
                     } else if (item.type === 'blog_post') { // This is the new rule
                     link.href = `./${item.name}/index.html`;
                     icon.textContent = '📝 '; // Blog post icon (e.g., a memo or document emoji)
+                    } else if (item.type === 'misc') {
+                        link.href = `./${item.name}/index.html`;
+                        icon.textContent = '⌘ ';
                     }else {
                         link.href = `./${item.name}`;
                         icon.textContent = '📄 ';

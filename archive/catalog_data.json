@@ -15,18 +15,13 @@
         "lastModified": "2026-03-08"
     },
     {
-        "name": "set_theory",
-        "type": "folder",
-        "lastModified": "2026-03-08"
-    },
-    {
-        "name": "black_belt",
+        "name": "longest_increasing_subsequence",
         "type": "blog_post",
-        "lastModified": "2026-03-08"
+        "lastModified": "2026-07-15"
     },
     {
         "name": "backgammon",
-        "type": "folder",
+        "type": "misc",
         "lastModified": "2026-06-24"
     }
 ]

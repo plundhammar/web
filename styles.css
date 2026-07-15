@@ -87,3 +87,9 @@ header nav a {
     text-align: center;
     margin-top: 20px;
 }
+.ai-disclaimer {
+    max-width: 500px;
+    margin: 24px auto 0;
+    color: #aaa;
+    font-size: 0.75em;
+}

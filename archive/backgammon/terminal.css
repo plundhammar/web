@@ -513,3 +513,9 @@ h1 {
   text-align: left;
   white-space: pre;
 }
+.ai-disclaimer {
+  max-width: 500px;
+  margin: 24px auto 0;
+  color: #777;
+  font-size: 0.75rem;
+}

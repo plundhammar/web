@@ -163,6 +163,7 @@
     .then(r => r.text())
     .then(html => {
       document.getElementById('footer-placeholder').innerHTML = html;
+      document.querySelector('#footer-placeholder .ai-disclaimer')?.remove();
     });
 </script>
 

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Den längsta ökande delserien</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Den längsta ökande delserien</h1>
+    <nav>
+        <a href="../../index-sw.html">Hem</a>
+        <a href="../index-sw.html">Arkiv</a>
+        <a href="../../resume/index-sw.html">CV</a>
+    </nav>
+</header>
+
+<main>
+<div class="top-links">
+    <a class="return-link" href="../index-sw.html">-tillbaka-</a>
+</div>
+
+<article>
+<p>Anteckningar relaterade till <em>The Surprising Mathematics of Longest Increasing Subsequences</em> av Dan Romik. Denna bok behandlar ett av de problem som hamnar i kategorin "lätt att formulera, oväntat komplicerat att bevisa". Problemet kan formuleras ungefär</p>
+
+<p>Låt $\sigma_n$ vara en permutation av $n$ tal, och låt $L(\sigma_n)$ vara antalet element i den/de längsta ökande delserierna av $\sigma_n$. Om $\sigma_n$ väljs likformigt, hur beter sig $L(\sigma_n)$?</p>
+
+<p>En permutation $\sigma_n$ av $n$ tal är en funktion som skickar varje tal $1\leq k \leq n$ till $\sigma_n(k)$, se nedan.</p>
+
+<section class="lis-widget" id="permutation-widget">
+    <div class="widget-top">
+        <button id="perm-shuffle" type="button">Blanda</button>
+    </div>
+    <div id="perm-list" class="perm-list" aria-label="Permutation som lista"></div>
+    <p class="widget-caption" id="perm-caption"></p>
+</section>
+
+<p>En egenskap som går att påvisa gällande fördelningen av $L(\sigma_n)$ är att kvoten $L(\sigma_n)/\sqrt{n}$ konvergerar mot en konstant $\Lambda$ i gränsvärdet då $n\to \infty$. Detta kan noteras</p>
+
+$$
+\frac{L(\sigma_n)}{\sqrt{n}} \to \Lambda
+$$
+
+<p>där pilen indikerar att sannolikheten att kvoten till vänster ligger nära $\Lambda$ går mot 1 då $n$ går mot oändligheten.</p>
+
+<h2>Permutation som geometriskt objekt</h2>
+<p>En praktisk och visuellt trevlig omformulering av problemet är att betrakta en permutation $\sigma_n$ som ett punktmoln. D.v.s. för en given permutation $\sigma_n$ betraktar vi mängden</p>
+
+$$
+G_{\sigma_n} = \{(k,\sigma_n(k))\mid 1\leq k \leq n\}
+$$
+
+<p>och ritar ut den i ett diagram, se exemplet nedan.</p>
+
+<section class="lis-widget" id="grid-widget">
+    <div class="widget-top">
+        <button id="grid-shuffle" type="button">Ny permutation</button>
+    </div>
+    <svg id="grid-svg" viewBox="0 0 420 300" role="img" aria-label="Punktmolnet G sigma n"></svg>
+    <p class="widget-caption" id="grid-caption"></p>
+</section>
+
+<p>Notera att en ökande delserie består av de punkter från vänster till höger som ökar för varje steg till höger, låt oss kalla det för en uppåtgående kedja. Notera också att den exakta x- och y-koordinaten inte är intressant för att kunna avgöra den delmängd som utgör en ökande delserie eftersom vi endast bryr oss om punkternas relativa position till varandra. Alltså, om vi slumpar $n$ punkter $(x_k,y_k)$ i kvadraten $[0,1]^2$ och låter $P_n = \{(x_k,y_k)\}$ beteckna punktmolnet av alla $n$ punkter, se nedan</p>
+
+<section class="lis-widget" id="random-widget">
+    <div class="widget-top">
+        <button id="random-new" type="button">Nya punkter</button>
+    </div>
+    <svg id="random-svg" viewBox="0 0 420 300" role="img" aria-label="Slumpat punktmoln med längsta ökande delserie"></svg>
+    <p class="widget-caption" id="random-caption"></p>
+</section>
+
+<p>Vi kan bilda en korrespondens mellan $P_n$ och $G_{\sigma_n}$ genom att tänka oss att vi först sveper med ett lodrätt streck från vänster till höger i punktmolnet $P_n$ och helt enkelt indexerar ordningen i vilken punkterna dyker upp. Detta blir $x$-koordinaten i $G_{\sigma_n}$. På liknande sätt sveper vi med ett horisontellt streck nedifrån och upp och indexerar ordningen i vilken punkterna dyker upp. Detta blir $y$-koordinaten i $G_{\sigma_n}$. Vi har alltså en avbildning från $P_n\to G_{\sigma_n}$.</p>
+
+<section class="lis-widget wide-widget" id="rank-widget">
+    <div class="widget-top">
+        <button id="rank-new" type="button">Nya punkter</button>
+        <span class="small-note">Dra punkterna i vänstra diagrammet.</span>
+    </div>
+    <div class="paired-plots">
+        <figure>
+            <svg id="rank-left-svg" viewBox="0 0 300 300" role="img" aria-label="Punktmolnet P n"></svg>
+            <figcaption>$P_n$</figcaption>
+        </figure>
+        <figure>
+            <svg id="rank-right-svg" viewBox="0 0 300 300" role="img" aria-label="Motsvarande permutation"></svg>
+            <figcaption>$G_{\sigma_n}$</figcaption>
+        </figure>
+    </div>
+    <p class="widget-caption" id="rank-caption"></p>
+</section>
+
+<p>Genom att inducera en partiell ordning på $P_n$ genom relationen $(x_1, y_1)\preceq (x_2,y_2)$ om $x_1\leq x_2$ och $y_1\leq y_2$ har vi också ett sätt att prata om ökande delserier i $P_n$ och ser att vi har en direkt korrespondens mellan kedjorna i $P_n$ och de ökande delserierna i $G_{\sigma_n}$. Låt $L(P_n)$ vara längden på en av de längsta ökande delserierna i $P_n$. Vi har alltså att $L(P_n)=L(\sigma_n)$.</p>
+
+<p>Problemet kan nu formuleras:</p>
+
+<p>Givet ett likformigt fördelat punktmoln i planet, vad är längden på den längsta uppåtgående kedjan?</p>
+
+<h2>Simulering</h2>
+<p>Man kan se gränsen $n\to\infty$ som en övergång från ett diskret problem till ett kontinuerligt. Ett sätt att göra detta är att ersätta de $n$ slumpade punkterna i enhetskvadraten med en Poissonprocess i en växande kvadrat.</p>
+
+<p>Antag att punkterna har konstant ytdensitet $\lambda$ i en kvadrat med area $A$. Det förväntade antalet punkter är då</p>
+
+$$
+n = \lambda A.
+$$
+
+<p>När kvadraten växer ökar alltså antalet punkter proportionellt mot arean.</p>
+
+<p>För en konstant punktdensitet är den längsta uppåtgående kedjan asymptotiskt proportionell mot kvadratens sidlängd. Skälet är att kedjan måste röra sig i både $x$- och $y$-led. Om kvadraten förstoras med en faktor $c$ i varje riktning, så kan man dela in en typisk uppåtgående väg i små rutor längs vägen. Varje sådan ruta blir $c$ gånger bredare och $c$ gånger högre. Antalet punkter i rutan växer då som $c^2$, men längden på den längsta uppåtgående kedjan genom rutan växer som kvadratroten av antalet punkter, alltså som $c$. När bidragen från rutorna längs vägen summeras växer hela kedjan därför som en längdskala, inte som en area. Eftersom kvadratens sidlängd är $\sqrt A$ förväntar vi oss alltså en skalning av formen</p>
+
+$$
+L \sim \Lambda\sqrt{\lambda A}.
+$$
+
+<p>för en konstant $\Lambda$. Den exakta konstanten följer inte från detta argument. Det betyder att</p>
+
+$$
+\frac{L(\sigma_n)}{\sqrt n} \to \Lambda.
+$$
+
+<section class="lis-widget" id="simulation-widget">
+    <div class="widget-top">
+        <label for="sim-scale">zoom</label>
+        <input id="sim-scale" type="range" min="6" max="90" value="25">
+        <span id="sim-scale-label">25</span>
+        <button id="sim-new" type="button">Ny process</button>
+    </div>
+    <svg id="sim-svg" viewBox="0 0 420 420" role="img" aria-label="Simulering av längsta ökande delserie"></svg>
+    <p class="widget-caption" id="sim-caption"></p>
+</section>
+
+</article>
+</main>
+
+<div id="footer-placeholder" class="footer-content">2026-07-15</div>
+<p class="ai-disclaimer">Denna hemsida innehåller ingen AI-genererad text. AI-handläggare har använts för att formatera delar av sidan.</p>
+
+<style>
+  .lis-widget {
+    margin: 2rem 0;
+  }
+
+  .widget-top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .widget-top button {
+    font: inherit;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid #999;
+    background: white;
+    cursor: pointer;
+  }
+
+  .widget-top button:hover {
+    background: #f2f2f2;
+  }
+
+  .widget-top input[type="range"] {
+    max-width: 170px;
+  }
+
+  .lis-widget svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: none;
+    background: white;
+    touch-action: none;
+  }
+
+  .perm-list {
+    display: flex;
+    justify-content: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    margin: 1rem 0 0.6rem;
+    font-size: 1.25rem;
+  }
+
+  .perm-item {
+    min-width: 1.7rem;
+    padding: 0.25rem 0.35rem;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .perm-item.in-lis {
+    border-color: #b00000;
+    color: #b00000;
+  }
+
+  .widget-caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+  }
+
+  .small-note {
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  .paired-plots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .paired-plots figure {
+    margin: 0;
+  }
+
+  .paired-plots figcaption {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+  }
+
+  .axis-line {
+    stroke: #aaa;
+    stroke-width: 1;
+  }
+
+  .grid-line {
+    stroke: #eee;
+    stroke-width: 1;
+  }
+
+  .point {
+    fill: #111;
+    stroke: white;
+    stroke-width: 1.5;
+  }
+
+  .point.draggable {
+    cursor: grab;
+  }
+
+  .point.draggable:active {
+    cursor: grabbing;
+  }
+
+  .point.in-lis {
+    fill: #b00000;
+  }
+
+  .lis-line {
+    fill: none;
+    stroke: #b00000;
+    stroke-width: 2.2;
+  }
+
+  .faint-line {
+    fill: none;
+    stroke: #ddd;
+    stroke-width: 1;
+  }
+
+  .axis-label {
+    font-size: 10px;
+    fill: #666;
+  }
+
+  @media (max-width: 650px) {
+    .paired-plots {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+(function () {
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  function el(name, attrs = {}) {
+    const node = document.createElementNS(SVG_NS, name);
+    for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+    return node;
+  }
+
+  function shuffle(array) {
+    const a = array.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function randomPerm(n) {
+    return shuffle(Array.from({ length: n }, (_, i) => i + 1));
+  }
+
+  function lisIndices(values) {
+    const n = values.length;
+    const tails = [];
+    const tailsIdx = [];
+    const prev = Array(n).fill(-1);
+
+    for (let i = 0; i < n; i++) {
+      let lo = 0, hi = tails.length;
+      while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (tails[mid] < values[i]) lo = mid + 1;
+        else hi = mid;
+      }
+      if (lo > 0) prev[i] = tailsIdx[lo - 1];
+      tails[lo] = values[i];
+      tailsIdx[lo] = i;
+    }
+
+    let k = tailsIdx[tails.length - 1];
+    const out = [];
+    while (k !== undefined && k >= 0) {
+      out.push(k);
+      k = prev[k];
+    }
+    return out.reverse();
+  }
+
+  function lisForPoints(points) {
+    const ordered = points.map((p, i) => ({ ...p, i })).sort((a, b) => a.x - b.x || a.y - b.y);
+    const idx = lisIndices(ordered.map(p => p.y));
+    return idx.map(j => ordered[j].i);
+  }
+
+  function pointFromPerm(i, value, n, box) {
+    const x = box.left + (n === 1 ? 0.5 : i / (n - 1)) * box.size;
+    const y = box.top + (1 - (value - 1) / (n - 1)) * box.size;
+    return { x, y };
+  }
+
+  function drawFrame(svg, box, n = 0) {
+    svg.innerHTML = "";
+    svg.appendChild(el("line", { x1: box.left, y1: box.top + box.size, x2: box.left + box.size, y2: box.top + box.size, class: "axis-line" }));
+    svg.appendChild(el("line", { x1: box.left, y1: box.top, x2: box.left, y2: box.top + box.size, class: "axis-line" }));
+    if (n > 1 && n <= 12) {
+      for (let i = 0; i < n; i++) {
+        const p = pointFromPerm(i, i + 1, n, box);
+        svg.appendChild(el("line", { x1: p.x, y1: box.top, x2: p.x, y2: box.top + box.size, class: "grid-line" }));
+        svg.appendChild(el("line", { x1: box.left, y1: p.y, x2: box.left + box.size, y2: p.y, class: "grid-line" }));
+      }
+    }
+  }
+
+  function drawPolyline(svg, coords, klass = "lis-line") {
+    if (coords.length < 2) return;
+    svg.appendChild(el("polyline", { points: coords.map(p => `${p.x},${p.y}`).join(" "), class: klass }));
+  }
+
+  function drawPerm(svg, perm, options = {}) {
+    const box = options.box || { left: 45, top: 20, size: 240 };
+    const n = perm.length;
+    drawFrame(svg, box, n);
+    const lis = lisIndices(perm);
+    const lisSet = new Set(lis);
+    const coords = perm.map((v, i) => pointFromPerm(i, v, n, box));
+    drawPolyline(svg, lis.map(i => coords[i]));
+
+    coords.forEach((p, i) => {
+      const circle = el("circle", { cx: p.x, cy: p.y, r: options.radius || 6, class: `point${lisSet.has(i) ? " in-lis" : ""}${options.draggable ? " draggable" : ""}`, "data-index": i });
+      svg.appendChild(circle);
+    });
+
+    if (options.labels !== false && n <= 12) {
+      for (let i = 0; i < n; i++) {
+        const px = pointFromPerm(i, 1, n, box).x;
+        const py = pointFromPerm(0, i + 1, n, box).y;
+        svg.appendChild(el("text", { x: px - 3, y: box.top + box.size + 16, class: "axis-label" })).textContent = i + 1;
+        svg.appendChild(el("text", { x: box.left - 20, y: py + 4, class: "axis-label" })).textContent = i + 1;
+      }
+    }
+    return { lis, coords, box };
+  }
+
+  function ranksToPerm(points) {
+    const byX = points.map((p, i) => ({ ...p, i })).sort((a, b) => a.x - b.x);
+    const byY = points.map((p, i) => ({ ...p, i })).sort((a, b) => a.y - b.y);
+    const yRank = new Map();
+    byY.forEach((p, rank) => yRank.set(p.i, rank + 1));
+    return byX.map(p => yRank.get(p.i));
+  }
+
+  function drawRandomPoints(svg, points, options = {}) {
+    const box = options.box || { left: 45, top: 20, size: 240 };
+    drawFrame(svg, box, 0);
+    const lis = lisForPoints(points);
+    const lisSet = new Set(lis);
+    const coords = points.map(p => ({ x: box.left + p.x * box.size, y: box.top + (1 - p.y) * box.size }));
+    drawPolyline(svg, lis.map(i => coords[i]));
+    coords.forEach((p, i) => {
+      const c = el("circle", { cx: p.x, cy: p.y, r: options.radius || 5, class: `point${lisSet.has(i) ? " in-lis" : ""}${options.draggable ? " draggable" : ""}`, "data-index": i });
+      svg.appendChild(c);
+    });
+    return { lis, coords, box };
+  }
+
+  function makeRandomPoints(n) {
+    return Array.from({ length: n }, () => ({ x: Math.random(), y: Math.random() }));
+  }
+
+  const permList = document.getElementById("perm-list");
+  const permCaption = document.getElementById("perm-caption");
+  let perm = [6, 3, 1, 2, 5, 4];
+
+  function renderPerm() {
+    const lis = lisIndices(perm);
+    const lisSet = new Set(lis);
+    permList.innerHTML = "";
+    perm.forEach((value, i) => {
+      const item = document.createElement("span");
+      item.className = `perm-item${lisSet.has(i) ? " in-lis" : ""}`;
+      item.textContent = value;
+      permList.appendChild(item);
+    });
+    permCaption.textContent = `σₙ = (${perm.join(", ")}) och L(σₙ) = ${lis.length}.`;
+  }
+
+  document.getElementById("perm-shuffle").addEventListener("click", () => { perm = randomPerm(6); renderPerm(); });
+  renderPerm();
+
+  const gridSvg = document.getElementById("grid-svg");
+  const gridCaption = document.getElementById("grid-caption");
+  let gridPerm = [3, 8, 1, 10, 5, 2, 7, 4, 9, 6];
+  function renderGrid() {
+    const { lis } = drawPerm(gridSvg, gridPerm, { box: { left: 55, top: 20, size: 230 } });
+    gridCaption.textContent = `Givet σₙ = [${gridPerm.join(", ")}], är L(σₙ) = ${lis.length}.`;
+  }
+  document.getElementById("grid-shuffle").addEventListener("click", () => { gridPerm = randomPerm(10); renderGrid(); });
+  renderGrid();
+
+  const randomSvg = document.getElementById("random-svg");
+  const randomCaption = document.getElementById("random-caption");
+  let randomPoints = makeRandomPoints(18);
+  function renderRandom() {
+    const { lis } = drawRandomPoints(randomSvg, randomPoints, { box: { left: 45, top: 20, size: 250 } });
+    randomCaption.textContent = `Här är L(Pₙ) = ${lis.length} för ${randomPoints.length} slumpade punkter.`;
+  }
+  document.getElementById("random-new").addEventListener("click", () => { randomPoints = makeRandomPoints(18); renderRandom(); });
+  renderRandom();
+
+  const rankLeft = document.getElementById("rank-left-svg");
+  const rankRight = document.getElementById("rank-right-svg");
+  const rankCaption = document.getElementById("rank-caption");
+  const rankBox = { left: 35, top: 20, size: 230 };
+  let rankPoints = makeRandomPoints(10);
+  let activeRankIndex = null;
+
+  function renderRank() {
+    drawRandomPoints(rankLeft, rankPoints, { box: rankBox, draggable: true, radius: 6 });
+    const rankPerm = ranksToPerm(rankPoints);
+    const right = drawPerm(rankRight, rankPerm, { box: rankBox, labels: false });
+    rankCaption.textContent = `Den inducerade permutationen är [${rankPerm.join(", ")}], och L = ${right.lis.length}.`;
+  }
+
+  rankLeft.addEventListener("pointerdown", e => {
+    if (!e.target.classList.contains("draggable")) return;
+    activeRankIndex = Number(e.target.dataset.index);
+    rankLeft.setPointerCapture(e.pointerId);
+  });
+
+  rankLeft.addEventListener("pointermove", e => {
+    if (activeRankIndex === null) return;
+    const pt = rankLeft.createSVGPoint();
+    pt.x = e.clientX; pt.y = e.clientY;
+    const loc = pt.matrixTransform(rankLeft.getScreenCTM().inverse());
+    rankPoints[activeRankIndex].x = Math.max(0, Math.min(1, (loc.x - rankBox.left) / rankBox.size));
+    rankPoints[activeRankIndex].y = Math.max(0, Math.min(1, 1 - (loc.y - rankBox.top) / rankBox.size));
+    renderRank();
+  });
+
+  rankLeft.addEventListener("pointerup", () => { activeRankIndex = null; });
+  rankLeft.addEventListener("pointercancel", () => { activeRankIndex = null; });
+
+  document.getElementById("rank-new").addEventListener("click", () => { rankPoints = makeRandomPoints(10); renderRank(); });
+  renderRank();
+
+  const simSvg = document.getElementById("sim-svg");
+  const simScale = document.getElementById("sim-scale");
+  const simScaleLabel = document.getElementById("sim-scale-label");
+  const simCaption = document.getElementById("sim-caption");
+  let poissonPoints = [];
+
+  function poissonSample(lambda) {
+    const limit = Math.exp(-lambda);
+    let k = 0;
+    let product = 1;
+    do {
+      k++;
+      product *= Math.random();
+    } while (product > limit);
+    return k - 1;
+  }
+
+  function newPoissonProcess() {
+    const maxSide = Number(simScale.max);
+    poissonPoints = [];
+    for (let x = 0; x < maxSide; x++) {
+      for (let y = 0; y < maxSide; y++) {
+        const count = poissonSample(1);
+        for (let i = 0; i < count; i++) {
+          poissonPoints.push({ x: x + Math.random(), y: y + Math.random() });
+        }
+      }
+    }
+  }
+
+  function renderSimulation() {
+    const side = Number(simScale.value);
+    simScaleLabel.textContent = side;
+    const pts = poissonPoints.filter(p => p.x <= side && p.y <= side).map(p => ({ x: p.x / side, y: p.y / side }));
+    const box = { left: 30, top: 20, size: 360 };
+    drawFrame(simSvg, box, 0);
+    const lis = lisForPoints(pts);
+    const lisSet = new Set(lis);
+    const coords = pts.map(p => ({ x: box.left + p.x * box.size, y: box.top + (1 - p.y) * box.size }));
+    drawPolyline(simSvg, lis.map(i => coords[i]));
+    coords.forEach((p, i) => {
+      const radius = pts.length > 5000 ? 1.05 : pts.length > 2000 ? 1.35 : pts.length > 1200 ? 1.7 : 2.2;
+      simSvg.appendChild(el("circle", { cx: p.x, cy: p.y, r: radius, class: `point${lisSet.has(i) ? " in-lis" : ""}` }));
+    });
+    const n = pts.length;
+    const ratio = n > 0 ? lis.length / Math.sqrt(n) : 0;
+    simCaption.textContent = n > 0 ? `L(σₙ)/√n = ${lis.length}/√${n} ≈ ${ratio.toFixed(2).replace(".", ",")}.` : "Inga punkter.";
+  }
+
+  simScale.addEventListener("input", renderSimulation);
+  document.getElementById("sim-new").addEventListener("click", () => { newPoissonProcess(); renderSimulation(); });
+  newPoissonProcess();
+  renderSimulation();
+})();
+</script>
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</body>
+</html>
